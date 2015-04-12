@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">App</string>
+    <string name="app_name">Hummingnerds Android</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -14,4 +14,5 @@
     <string name="user_type_1">Enthusiast</string>
     <string name="user_type_2">Researcher</string>
     <string name="org">Organization</string>
+    <string name="title_activity_user_menu">UserMenu</string>
 </resources>
