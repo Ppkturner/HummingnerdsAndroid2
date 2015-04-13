@@ -17,7 +17,7 @@ public class SignUp extends ActionBarActivity {
     }
 
     public void clickFunction(View v){
-        Intent intent = new Intent(this, SignUp.class);
+        Intent intent = new Intent(this, Login.class);
 
         switch (v.getId()){
             case R.id.login_button:
