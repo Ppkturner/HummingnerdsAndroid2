@@ -48,7 +48,16 @@ public class UserMenu extends FragmentActivity {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return "Page " + ( position + 1 );
+            switch(position){
+                case 0:
+                    return("User Settings");
+                case 1:
+                    return("Birds");
+                case 2:
+                    return("Bird Feeders");
+                default:
+                    return("Page" + position);
+            }
         }
     }
 
@@ -76,7 +85,7 @@ public class UserMenu extends FragmentActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.fragment_page, container, false);
-            TextView textView = (TextView) view;
+            TextView textView = (TextView) view.findViewById(R.id.listTextView);
             textView.setText("Fragment #" + mPage);
             return view;
         }

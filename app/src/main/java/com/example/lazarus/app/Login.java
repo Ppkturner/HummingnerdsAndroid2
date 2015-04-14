@@ -22,9 +22,11 @@ public class Login extends ActionBarActivity{
     public void clickFunction(View v)
     {
         Intent intent = new Intent(this, SignUp.class);
+        Intent intent_user = new Intent(this, UserMenu.class);
 
         switch(v.getId()){
             case R.id.login_button:
+                startActivity(intent_user);
                 break;
             case R.id.link_to_register:
                 startActivity(intent);
