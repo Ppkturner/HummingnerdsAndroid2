@@ -71,7 +71,8 @@
         android:text="Sign Up"
         android:layout_below="@+id/editText7"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="14dp"/>
+        android:layout_marginTop="14dp"
+        android:onClick="clickFunction"/>
 
     <RadioGroup
         android:layout_width="fill_parent"
@@ -105,6 +106,7 @@
         android:layout_below="@+id/login_button"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="14dp"
-        android:textColor="#060fff"/>
+        android:textColor="#060fff"
+        android:onClick="clickFunction"/>
 
 </RelativeLayout>

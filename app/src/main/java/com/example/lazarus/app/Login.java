@@ -12,10 +12,6 @@ package com.example.lazarus.app;
 
 public class Login extends ActionBarActivity{
 
-//    Find the login button
-    Button login_button = (Button) findViewById(R.id.login_button); // Gets the button on the login pager
-    View register_link = findViewById(R.id.link_to_register); // Find the view to the link to the registration
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
