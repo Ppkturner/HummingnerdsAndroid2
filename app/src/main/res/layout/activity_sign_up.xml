@@ -23,20 +23,9 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/passwordField"
-        android:hint="@string/password"
-        android:layout_below="@+id/editText2"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
-        android:id="@+id/editText2"
+        android:id="@+id/emailAddressField"
         android:hint="@string/email"
         android:layout_below="@+id/usernameField"
         android:layout_alignLeft="@+id/usernameField"
@@ -47,7 +36,18 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/editText6"
+        android:id="@+id/passwordField"
+        android:hint="@string/password"
+        android:layout_below="@+id/emailAddressField"
+        android:layout_alignLeft="@+id/emailAddressField"
+        android:layout_alignStart="@+id/emailAddressField"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/confirmPasswordField"
         android:layout_alignLeft="@+id/usernameField"
         android:layout_alignStart="@+id/usernameField"
         android:layout_below="@+id/passwordField"
@@ -56,20 +56,20 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText7"
+        android:id="@+id/organization"
         android:hint="@string/org"
         android:layout_below="@+id/radioGroup"
         android:layout_alignLeft="@+id/radioGroup"
-        android:layout_alignRight="@+id/editText6"
+        android:layout_alignRight="@+id/confirmPasswordField"
         android:layout_alignStart="@+id/radioGroup"
-        android:layout_alignEnd="@+id/editText6"/>
+        android:layout_alignEnd="@+id/confirmPasswordField"/>
 
     <Button
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign Up"
-        android:layout_below="@+id/editText7"
+        android:text="@string/register"
+        android:layout_below="@+id/organization"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="14dp"
         android:onClick="clickFunction"/>
@@ -77,9 +77,9 @@
     <RadioGroup
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText6"
-        android:layout_alignStart="@+id/editText6"
-        android:layout_alignLeft="@+id/editText6"
+        android:layout_below="@+id/confirmPasswordField"
+        android:layout_alignStart="@+id/confirmPasswordField"
+        android:layout_alignLeft="@+id/confirmPasswordField"
         android:id="@+id/radioGroup">
 
         <RadioButton
