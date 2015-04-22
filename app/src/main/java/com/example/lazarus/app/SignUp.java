@@ -1,6 +1,7 @@
 package com.example.lazarus.app;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,6 +47,11 @@ public class SignUp extends ActionBarActivity {
 
         switch (v.getId()){
             case R.id.login_button:
+                try {
+                    new PostDataTask().execute();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 startActivity(intent);
                 break;
             case R.id.already_member:
@@ -53,6 +59,26 @@ public class SignUp extends ActionBarActivity {
                 break;
         }
     }
+
+    private class PostDataTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+
+            // params comes from the execute() call: params[0] is the url.
+            try {
+                GetText();
+                return "Success";
+            } catch (IOException e) {
+                return "Unable to retrieve web page. URL may be invalid.";
+            }
+        }
+        // onPostExecute displays the results of the AsyncTask.
+        @Override
+        protected void onPostExecute(String result) {
+            Log.v("RegisterActivity", "SUCCESSS!!");
+        }
+    }
+
 
     public  void  GetText()  throws UnsupportedEncodingException
     {

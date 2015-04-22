@@ -43,7 +43,17 @@ public class UserMenu extends FragmentActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return PageFragment.create(position + 1);
+
+            switch (position){
+                case 0:
+                    return FirstFragment.create(position);
+                case 1:
+                    return SecondFragment.create(position);
+                case 2:
+                    return ThirdFragment.create(position);
+                default:
+                    return PageFragment.create(position);
+            }
         }
 
         @Override
@@ -58,6 +68,95 @@ public class UserMenu extends FragmentActivity {
                 default:
                     return("Page" + position);
             }
+        }
+    }
+
+    // A new class for each different kind of page tab
+
+    public static class FirstFragment extends Fragment{
+        public static final String ARG_PAGE = "ARG_PAGE";
+
+        private int mPage;
+
+        public static FirstFragment create(int page){
+            Bundle args = new Bundle();
+            args.putInt(ARG_PAGE, page);
+            FirstFragment fragment = new FirstFragment();
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @Override
+        public void onCreate(Bundle savedInstanceState){
+            super.onCreate(savedInstanceState);
+            mPage = getArguments().getInt(ARG_PAGE);
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.fragment_page, container, false);
+            TextView textView = (TextView) view.findViewById(R.id.listTextView);
+            textView.setText("Fragment #" + mPage);
+            return view;
+        }
+    }
+
+    public static class SecondFragment extends Fragment{
+        public static final String ARG_PAGE = "ARG_PAGE";
+
+        private int mPage;
+
+        public static SecondFragment create(int page){
+            Bundle args = new Bundle();
+            args.putInt(ARG_PAGE, page);
+            SecondFragment fragment = new SecondFragment();
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @Override
+        public void onCreate(Bundle savedInstanceState){
+            super.onCreate(savedInstanceState);
+            mPage = getArguments().getInt(ARG_PAGE);
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.fragment_page, container, false);
+            TextView textView = (TextView) view.findViewById(R.id.listTextView);
+            textView.setText("Fragment #" + mPage);
+            return view;
+        }
+    }
+
+    public static class ThirdFragment extends Fragment{
+        public static final String ARG_PAGE = "ARG_PAGE";
+
+        private int mPage;
+
+        public static ThirdFragment create(int page){
+            Bundle args = new Bundle();
+            args.putInt(ARG_PAGE, page);
+            ThirdFragment fragment = new ThirdFragment();
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @Override
+        public void onCreate(Bundle savedInstanceState){
+            super.onCreate(savedInstanceState);
+            mPage = getArguments().getInt(ARG_PAGE);
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.fragment_page, container, false);
+            TextView textView = (TextView) view.findViewById(R.id.listTextView);
+            textView.setText("Fragment #" + mPage);
+            return view;
         }
     }
 

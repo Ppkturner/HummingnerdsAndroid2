@@ -35,13 +35,14 @@ public class Login extends ActionBarActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        email = (EditText)findViewById(R.id.editText);
+        email = (EditText)findViewById(R.id.usernameField);
         pass =  (EditText)findViewById(R.id.passwordField);
     }
 
     public void clickFunction(View v)
     {
         Intent intent = new Intent(this, SignUp.class);
+        Intent user_menu = new Intent(this, UserMenu.class);
 
         switch(v.getId()){
             case R.id.login_button:
@@ -50,6 +51,7 @@ public class Login extends ActionBarActivity{
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                startActivity(user_menu);
                 break;
             case R.id.link_to_register:
                 startActivity(intent);
