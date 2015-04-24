@@ -95,7 +95,7 @@ public class UserMenu extends FragmentActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.fragment_page, container, false);
+            View view = inflater.inflate(R.layout.first_fragment, container, false);
             TextView textView = (TextView) view.findViewById(R.id.listTextView);
             textView.setText("Fragment #" + mPage);
             return view;
@@ -124,7 +124,7 @@ public class UserMenu extends FragmentActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.fragment_page, container, false);
+            View view = inflater.inflate(R.layout.second_fragment, container, false);
             TextView textView = (TextView) view.findViewById(R.id.listTextView);
             textView.setText("Fragment #" + mPage);
             return view;
@@ -153,7 +153,7 @@ public class UserMenu extends FragmentActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.fragment_page, container, false);
+            View view = inflater.inflate(R.layout.third_fragment, container, false);
             TextView textView = (TextView) view.findViewById(R.id.listTextView);
             textView.setText("Fragment #" + mPage);
             return view;
