@@ -2,6 +2,7 @@ package com.example.lazarus.app;
 
 import android.content.DialogInterface;
 import android.os.AsyncTask;
+import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -113,8 +114,19 @@ public class Login extends ActionBarActivity{
             {
                 sb.append(line + "\n");
             }
+
             // Response from server after login process will be stored in response variable.
             response = sb.toString();
+
+            int i = 0;
+            String[] tokens = response.split("[,]");
+            if (!tokens[0].equals("\"success\":0")){
+                String[] tokens1 = tokens[1].split("[:]");
+                String[] tokens2 = tokens[2].split("[:]");
+//                ((GlobalVariable)this.getApplication()).setGroup(tokens1[1]);
+//                ((GlobalVariable)this.getApplication()).setUsername(tokens2[1]);
+                Log.v(tokens1[1], tokens2[1]);
+            }
             Log.v("LoginActivity", "response = " + response);
             // You can perform UI operations here
             //Toast.makeText(this, "Message from Server: \n" + response, 0).show();
