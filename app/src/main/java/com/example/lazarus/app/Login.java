@@ -24,12 +24,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.lang.Character;
 
 
 public class Login extends ActionBarActivity{
     TextView content;
     EditText email, pass;
     String Email, Pass;
+    Boolean login_success = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class Login extends ActionBarActivity{
     public void clickFunction(View v)
     {
         Intent intent = new Intent(this, SignUp.class);
+        Intent login = new Intent(this, Login.class);
         Intent user_menu = new Intent(this, UserMenu.class);
 
         switch(v.getId()){
@@ -52,7 +55,12 @@ public class Login extends ActionBarActivity{
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                startActivity(user_menu);
+                if (!login_success){
+                    startActivity(login);
+                }
+                else{
+                    startActivity(user_menu);
+                }
                 break;
             case R.id.link_to_register:
                 startActivity(intent);
@@ -120,14 +128,36 @@ public class Login extends ActionBarActivity{
 
             int i = 0;
             String[] tokens = response.split("[,]");
-            if (!tokens[0].equals("\"success\":0")){
+            int token_gid = -1;
+            int token_uid = -1;
+            String temp = "";
+            Log.v("LoginActivity", "value = " + (tokens[0] == response));
+            if (!(tokens[0] == response)){
                 String[] tokens1 = tokens[1].split("[:]");
                 String[] tokens2 = tokens[2].split("[:]");
 //                ((GlobalVariable)this.getApplication()).setGroup(tokens1[1]);
 //                ((GlobalVariable)this.getApplication()).setUsername(tokens2[1]);
-                Log.v(tokens1[1], tokens2[1]);
+                for(int j = 0; j < tokens1[1].toCharArray().length; j++) {
+//                    Log.v("LoginActivity", Character.toString(tokens[1].toCharArray()[j]));
+                    if (Character.isDigit(tokens1[1].toCharArray()[j])){
+                        temp += tokens1[1].toCharArray()[j];
+                    }
+                }
+                token_gid = Integer.parseInt(temp);
+                temp = "";
+                for(int j = 0; j < tokens2[1].toCharArray().length; j++){
+                    if(Character.isDigit(tokens2[1].toCharArray()[j])){
+                        temp += tokens2[1].toCharArray()[j];
+                    }
+                }
+                token_uid = Integer.parseInt(temp);
+                temp = "";
+                Log.v("LoginActivity", "gid = " + token_gid + " uid = " + token_uid);
             }
-            Log.v("LoginActivity", "response = " + response);
+            else if (tokens[0] == response){
+                login_success = false;
+                Log.v("LoginActivity", "response = " + response);
+            }
             // You can perform UI operations here
             //Toast.makeText(this, "Message from Server: \n" + response, 0).show();
             isr.close();

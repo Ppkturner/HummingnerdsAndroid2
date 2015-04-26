@@ -101,8 +101,8 @@ public class SignUp extends ActionBarActivity {
                             +"&email="+Email
                             +"&gid="+User_Type
                             +"&org="+Organization
-                            +"&password="+Pass
-                            +"&passwordConfirm="+Confirm_Pass;
+                            +"&pass="+Pass
+                            +"&pass2="+Confirm_Pass;
         Log.v("LoginActivity", parameters);
         try
         {
