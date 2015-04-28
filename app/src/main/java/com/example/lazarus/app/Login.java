@@ -31,13 +31,13 @@ public class Login extends ActionBarActivity{
     TextView content;
     EditText email, pass;
     String Email, Pass;
-    Boolean login_success = true;
+    SessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        session = new SessionManager(getApplicationContext());
         email = (EditText)findViewById(R.id.usernameField);
         pass =  (EditText)findViewById(R.id.passwordField);
     }
@@ -45,8 +45,7 @@ public class Login extends ActionBarActivity{
     public void clickFunction(View v)
     {
         Intent intent = new Intent(this, SignUp.class);
-        Intent login = new Intent(this, Login.class);
-        Intent user_menu = new Intent(this, UserMenu.class);
+
 
         switch(v.getId()){
             case R.id.login_button:
@@ -55,12 +54,7 @@ public class Login extends ActionBarActivity{
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                if (!login_success){
-                    startActivity(login);
-                }
-                else{
-                    startActivity(user_menu);
-                }
+                session.checkLogin();
                 break;
             case R.id.link_to_register:
                 startActivity(intent);
@@ -128,8 +122,8 @@ public class Login extends ActionBarActivity{
 
             int i = 0;
             String[] tokens = response.split("[,]");
-            int token_gid = -1;
-            int token_uid = -1;
+            String token_gid = "";
+            String token_uid = "";
             String temp = "";
             Log.v("LoginActivity", "value = " + (tokens[0] == response));
             if (!(tokens[0] == response)){
@@ -143,19 +137,19 @@ public class Login extends ActionBarActivity{
                         temp += tokens1[1].toCharArray()[j];
                     }
                 }
-                token_gid = Integer.parseInt(temp);
+                token_gid = temp;
                 temp = "";
                 for(int j = 0; j < tokens2[1].toCharArray().length; j++){
                     if(Character.isDigit(tokens2[1].toCharArray()[j])){
                         temp += tokens2[1].toCharArray()[j];
                     }
                 }
-                token_uid = Integer.parseInt(temp);
+                token_uid = temp;
                 temp = "";
+                session.createLoginSession(token_uid, token_gid);
                 Log.v("LoginActivity", "gid = " + token_gid + " uid = " + token_uid);
             }
             else if (tokens[0] == response){
-                login_success = false;
                 Log.v("LoginActivity", "response = " + response);
             }
             // You can perform UI operations here

@@ -16,4 +16,5 @@
     <string name="org">Organization</string>
     <string name="title_activity_user_menu">UserMenu</string>
     <string name="register"> Sign Up </string>
+    <string name="logout">Log Out</string>
 </resources>
