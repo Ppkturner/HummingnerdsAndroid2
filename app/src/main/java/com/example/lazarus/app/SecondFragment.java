@@ -16,6 +16,7 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 
 /**
  * Created by Scott on 4/27/2015.
@@ -27,6 +28,8 @@ public class SecondFragment extends Fragment {
     private int mPage;
 
     private String BirdData;
+
+    private SessionManager session;
 
     public static SecondFragment create(int page){
         Bundle args = new Bundle();
@@ -45,7 +48,8 @@ public class SecondFragment extends Fragment {
 
         URL url = null;
         String response = null;
-        String parameters = ""; /*"uid=" + username; This doesn*/
+        HashMap <String, String> user_prefs = session.getUserDetail();
+        String parameters = "uid=" + user_prefs.get("uid") + "&gid=" + user_prefs.get("gid"); /*"uid=" + username; This doesn*/
         Log.v("Birds", parameters);
         try
         {
@@ -89,6 +93,8 @@ public class SecondFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         mPage = getArguments().getInt(ARG_PAGE);
+
+        session = new SessionManager(getActivity());
     }
 
     @Override

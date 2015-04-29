@@ -21,8 +21,8 @@ public class SessionManager {
 
     private static final String PREF_NAME = "HummingnerdPref";
     private static final String IS_LOGIN = "IsLoggedIn";
-    private static final String KEY_UID = "-1";
-    private static final String KEY_GID = "-1";
+    private static final String KEY_UID = "uid";
+    private static final String KEY_GID = "gid";
 
     public SessionManager(Context context){
         this._context = context;
