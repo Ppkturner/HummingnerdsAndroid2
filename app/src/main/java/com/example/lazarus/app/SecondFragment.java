@@ -27,7 +27,7 @@ public class SecondFragment extends Fragment {
 
     private int mPage;
 
-    private String BirdData;
+    private String BirdData = new String();
 
     private SessionManager session;
 
@@ -37,56 +37,6 @@ public class SecondFragment extends Fragment {
         SecondFragment fragment = new SecondFragment();
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public  String  GetText()  throws UnsupportedEncodingException
-    {
-        // Get user defined values
-
-        HttpURLConnection connection;
-        OutputStreamWriter request;
-
-        URL url = null;
-        String response = null;
-        HashMap <String, String> user_prefs = session.getUserDetail();
-        String parameters = "uid=" + user_prefs.get("uid") + "&gid=" + user_prefs.get("gid"); /*"uid=" + username; This doesn*/
-        Log.v("Birds", parameters);
-        try
-        {
-            url = new URL("http://www.193.dwellis.com/android.php?bird=list");
-            connection = (HttpURLConnection) url.openConnection();
-            connection.setDoOutput(true);
-            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-            connection.setRequestMethod("GET");
-
-            request = new OutputStreamWriter(connection.getOutputStream());
-            request.write(parameters);
-            request.flush();
-            request.close();
-            String line = "";
-            InputStreamReader isr = new InputStreamReader(connection.getInputStream());
-            BufferedReader reader = new BufferedReader(isr);
-            StringBuilder sb = new StringBuilder();
-            while ((line = reader.readLine()) != null)
-            {
-                sb.append(line + "\n");
-            }
-            // Response from server after login process will be stored in response variable.
-            response = sb.toString();
-            Log.v("Birds", "response = " + response);
-            // You can perform UI operations here
-            //Toast.makeText(this, "Message from Server: \n" + response, 0).show();
-            isr.close();
-            reader.close();
-
-        }
-        catch(IOException e)
-        {
-            // Error
-        }
-        // Show response on activity
-        //content.setText( text  );
-        return(response);
     }
 
     @Override
@@ -109,8 +59,70 @@ public class SecondFragment extends Fragment {
             e.printStackTrace();
         }
 
+        Log.v("BirdActivityOnCreate", BirdData);
+
         textView.setText(BirdData);
+
         return view;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState){
+        super. onActivityCreated(savedInstanceState);
+
+        try {
+            new PostDataTask().execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public  String  GetText()  throws UnsupportedEncodingException
+    {
+        // Get user defined values
+
+        HttpURLConnection connection;
+        OutputStreamWriter request;
+
+        URL url = null;
+        String response = null;
+        HashMap <String, String> user_prefs = session.getUserDetail();
+        String parameters = ""/*"uid=" + user_prefs.get("uid")*/;
+        try
+        {
+            url = new URL("http://www.193.dwellis.com/android.php?bird=list&uid=" + user_prefs.get("uid"));
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setDoOutput(true);
+            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            connection.setRequestMethod("GET");
+
+            request = new OutputStreamWriter(connection.getOutputStream());
+            request.write(parameters);
+            request.flush();
+            request.close();
+            String line = "";
+            InputStreamReader isr = new InputStreamReader(connection.getInputStream());
+            BufferedReader reader = new BufferedReader(isr);
+            StringBuilder sb = new StringBuilder();
+            while ((line = reader.readLine()) != null)
+            {
+                sb.append(line + "\n");
+            }
+            // Response from server after login process will be stored in response variable.
+            response = sb.toString();
+            Log.v("BirdActivity", "response = " + response);
+            // You can perform UI operations here
+            //Toast.makeText(this, "Message from Server: \n" + response, 0).show();
+            isr.close();
+            reader.close();
+        }
+        catch(IOException e)
+        {
+            // Error
+        }
+        // Show response on activity
+        //content.setText( text  );
+        return(response);
     }
 
     private class PostDataTask extends AsyncTask<String, Void, String> {
@@ -128,7 +140,10 @@ public class SecondFragment extends Fragment {
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(String result) {
-            Log.v("BirdsActivity", "SUCCESSS!!");
+            Log.v("BirdsActivitySuccess", BirdData);
+            TextView textView = (TextView) getView().findViewById(R.id.listTextView);
+
+            textView.setText(BirdData);
         }
     }
 }

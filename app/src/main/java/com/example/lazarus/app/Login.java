@@ -48,10 +48,8 @@ public class Login extends ActionBarActivity{
 
         switch(v.getId()){
             case R.id.login_button:
-                session.checkLogin();
                 try {
                     new PostDataTask().execute();
-                    session.checkLogin();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -78,10 +76,9 @@ public class Login extends ActionBarActivity{
         @Override
         protected void onPostExecute(String result) {
             Log.v("LoginActivity", "SUCCESSS!!");
+            session.checkLogin();
         }
     }
-
-
 
     public  void  GetText()  throws UnsupportedEncodingException
     {

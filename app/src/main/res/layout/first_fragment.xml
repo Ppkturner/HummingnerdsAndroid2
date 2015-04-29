@@ -3,11 +3,12 @@
     android:layout_height="match_parent"
     android:background="@android:color/holo_red_light" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/listTextView" />
+     <ListView
+         android:layout_width="fill_parent"
+         android:layout_height="fill_parent"
+         android:id="@+id/list"
+         android:focusable="false"
+         android:focusableInTouchMode="false"/>
      <Button
          android:id="@+id/logout_button"
          android:layout_width="wrap_content"
