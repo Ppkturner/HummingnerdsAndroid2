@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class FirstFragment extends Fragment {
+public class FirstFragment extends Fragment implements View.OnClickListener {
     public static final String ARG_PAGE = "ARG_PAGE";
 
     private int mPage;
@@ -32,8 +32,6 @@ public class FirstFragment extends Fragment {
         mPage = getArguments().getInt(ARG_PAGE);
 
         session = new SessionManager(getActivity());
-
-        button = (Button) getView().findViewById(R.id.logout_button);
     }
 
     @Override
@@ -43,16 +41,13 @@ public class FirstFragment extends Fragment {
         TextView textView = (TextView) view.findViewById(R.id.listTextView);
         textView.setText("Fragment #" + mPage);
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                session.logoutUser();
-            }
-        });
+        button = (Button) view.findViewById(R.id.logout_button);
+
+        button.setOnClickListener(this);
         return view;
     }
 
-    public void clickLogout(View v)
+    public void onClick(View v)
     {
         session.logoutUser();
     }

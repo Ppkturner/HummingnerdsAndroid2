@@ -46,15 +46,15 @@ public class Login extends ActionBarActivity{
     {
         Intent intent = new Intent(this, SignUp.class);
 
-
         switch(v.getId()){
             case R.id.login_button:
+                session.checkLogin();
                 try {
                     new PostDataTask().execute();
+                    session.checkLogin();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                session.checkLogin();
                 break;
             case R.id.link_to_register:
                 startActivity(intent);
