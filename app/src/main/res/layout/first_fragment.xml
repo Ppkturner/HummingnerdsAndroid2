@@ -8,12 +8,6 @@
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/listTextView" />
-     <ListView
-         android:layout_width="fill_parent"
-         android:layout_height="fill_parent"
-         android:id="@+id/list"
-         android:focusable="false"
-         android:focusableInTouchMode="false"/>
      <Button
          android:id="@+id/logout_button"
          android:layout_width="wrap_content"
@@ -22,4 +16,10 @@
          android:layout_marginTop="12dp"
          android:layout_below="@+id/passwordField"
          android:layout_centerHorizontal="true"/>
+     <ListView
+         android:layout_width="fill_parent"
+         android:layout_height="fill_parent"
+         android:id="@+id/list"
+         android:focusable="false"
+         android:focusableInTouchMode="false"/>
 </LinearLayout>
