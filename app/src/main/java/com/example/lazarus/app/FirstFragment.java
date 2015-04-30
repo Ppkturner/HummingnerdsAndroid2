@@ -9,9 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -38,8 +38,16 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
 
     private Button button;
 
-    private ListView lv;
-    private ArrayList<String> locationList;
+
+    // ListView for feeder list
+    private ListView lv1;
+    // ListView for visit list
+    private ListView lv2;
+
+    // Arraylist used for feeder list
+    private ArrayList<String> feederArray;
+    // Arraylist used for visit list
+    private ArrayList<String> visitArray;
 
     public static FirstFragment create(int page){
         Bundle args = new Bundle();
@@ -60,16 +68,20 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.first_fragment, container, false);
-        TextView textView = (TextView) view.findViewById(R.id.listTextView);
-        textView.setText("Fragment #" + mPage);
+       // TextView textView = (TextView) view.findViewById(R.id.listTextView);
+       // textView.setText("Fragment #" + mPage);
 
         button = (Button) view.findViewById(R.id.logout_button);
 
         // Find the listview from the xml
-        lv = (ListView) view.findViewById(R.id.feederList);
+        lv1 = (ListView) view.findViewById(R.id.feederList);
+        // Find the listview from the xml
+        lv2 = (ListView) view.findViewById(R.id.visitList);
 
-        // Initialize the Arraylist
-        locationList = new ArrayList<String>();
+        // Initialize the Feeder Arraylist
+        feederArray = new ArrayList<String>();
+        // Initialize the Visit Arraylist
+        visitArray = new ArrayList<String>();
 
 
         button.setOnClickListener(this);
@@ -141,6 +153,7 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
                     String feederID = feeder.getString("FID"); //Feeder ID
                     String zipcode = feeder.getString("zipcode"); //zipcode
                     String status = feeder.getString("status"); //feeder status
+                    feederArray.add(loc + "," + zipcode);
                     Log.v("UserCPActivitySuccess", "location: " + loc + " ID: " + feederID + " zipcode: " + zipcode + " status: " + status);
                 }
 
@@ -154,7 +167,7 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
                     String zipcode = visit.getString("zipcode");
                     String birdID = visit.getString("BID");
                     String visitDate = visit.getString("VisitDate"); //Will need to reformate this
-                    locationList.add(birdID + " , " + loc);
+                    visitArray.add(birdID + " , " + loc);
                     Log.v("UserCPActivitySuccess", "location: " + loc + " FID: " + feederID + " zipcode: " + zipcode + " BID: " + birdID + " visitDate: " + visitDate);
                 }
 
@@ -196,11 +209,39 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
             Log.v("UserCPActivitySuccess", UserDashBoard);
             //TextView textView = (TextView) getView().findViewById(R.id.listTextView);
             //textView.setText(UserDashBoard);
-            Log.v("UserCPActivitySuccess", "length of loc list = " + locationList.size() );
+            //Log.v("UserCPActivitySuccess", "length of loc list = " + locationList.size() );
             // Update the list view
-            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_expandable_list_item_1, locationList);
-            lv.setAdapter(arrayAdapter);
+            ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_expandable_list_item_1, feederArray);
+            ArrayAdapter<String> arrayAdapter2 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_expandable_list_item_1, visitArray);
+
+            lv1.setAdapter(arrayAdapter1);
+            lv2.setAdapter(arrayAdapter2);
+
+            ListUtils.setDynamicHeight(lv1);
+            ListUtils.setDynamicHeight(lv2);
         }
 
+
+    }
+
+    public static class ListUtils {
+        public static void setDynamicHeight(ListView mListView) {
+            ListAdapter mListAdapter = mListView.getAdapter();
+            if (mListAdapter == null) {
+                // when adapter is null
+                return;
+            }
+            int height = 0;
+            int desiredWidth = View.MeasureSpec.makeMeasureSpec(mListView.getWidth(), View.MeasureSpec.UNSPECIFIED);
+            for (int i = 0; i < mListAdapter.getCount(); i++) {
+                View listItem = mListAdapter.getView(i, null, mListView);
+                listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+                height += listItem.getMeasuredHeight();
+            }
+            ViewGroup.LayoutParams params = mListView.getLayoutParams();
+            params.height = height + (mListView.getDividerHeight() * (mListAdapter.getCount() - 1));
+            mListView.setLayoutParams(params);
+            mListView.requestLayout();
+        }
     }
 }
