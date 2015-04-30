@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -109,6 +112,24 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
             // Response from server after login process will be stored in response variable.
             response = sb.toString();
             Log.v("BirdActivity", "response = " + response);
+
+            try {
+                JSONObject jsonObj = new JSONObject(response);
+
+                JSONArray feeders = jsonObj.getJSONArray("Feeders");
+
+                for(int i = 0; i < feeders.length(); i++) {
+                    JSONObject feeder = feeders.getJSONObject(i);
+                    String loc = feeder.getString("location");
+                    Log.v("UserCPActivitySuccess", "location " + loc);
+
+                }
+            }
+            catch(Exception ex) {
+                Log.v("UserCPActivitySuccess", "FAILED PARSING JSON!!!");
+            }
+
+
             // You can perform UI operations here
             //Toast.makeText(this, "Message from Server: \n" + response, 0).show();
             isr.close();
@@ -141,6 +162,13 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
             Log.v("UserCPActivitySuccess", UserDashBoard);
             TextView textView = (TextView) getView().findViewById(R.id.listTextView);
             textView.setText(UserDashBoard);
+
+            try {
+                UserDashBoard = GetText();
+
+
+            } catch (IOException e) {
+            }
         }
-    }
+        }
 }
