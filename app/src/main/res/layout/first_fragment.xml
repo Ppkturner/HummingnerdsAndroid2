@@ -19,7 +19,10 @@
      <ListView
          android:layout_width="fill_parent"
          android:layout_height="fill_parent"
-         android:id="@+id/list"
+         android:id="@+id/feederList"
          android:focusable="false"
-         android:focusableInTouchMode="false"/>
+         android:dividerHeight="0.1dp"
+         android:focusableInTouchMode="false"
+         android:footerDividersEnabled="true"
+         android:background="#ffff9838" />
 </LinearLayout>

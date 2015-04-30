@@ -7,7 +7,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +23,9 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class FirstFragment extends Fragment implements View.OnClickListener {
     public static final String ARG_PAGE = "ARG_PAGE";
@@ -33,6 +37,9 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
     private String UserDashBoard;
 
     private Button button;
+
+    private ListView lv;
+    private ArrayList<String> locationList;
 
     public static FirstFragment create(int page){
         Bundle args = new Bundle();
@@ -46,7 +53,6 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         mPage = getArguments().getInt(ARG_PAGE);
-
         session = new SessionManager(getActivity());
     }
 
@@ -58,6 +64,13 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
         textView.setText("Fragment #" + mPage);
 
         button = (Button) view.findViewById(R.id.logout_button);
+
+        // Find the listview from the xml
+        lv = (ListView) view.findViewById(R.id.feederList);
+
+        // Initialize the Arraylist
+        locationList = new ArrayList<String>();
+
 
         button.setOnClickListener(this);
         return view;
@@ -121,7 +134,7 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
 
                 //Getting the feeder information
                 JSONArray feeders = jsonObj.getJSONArray("Feeders");
-
+                List<String> fList = new ArrayList<String>();
                 for(int i = 0; i < feeders.length(); i++) {
                     JSONObject feeder = feeders.getJSONObject(i);
                     String loc = feeder.getString("location"); //This get the location of the feeder
@@ -129,9 +142,7 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
                     String zipcode = feeder.getString("zipcode"); //zipcode
                     String status = feeder.getString("status"); //feeder status
                     Log.v("UserCPActivitySuccess", "location: " + loc + " ID: " + feederID + " zipcode: " + zipcode + " status: " + status);
-
                 }
-
 
                 //Getting the visit information
                 JSONArray visits = jsonObj.getJSONArray("Visits");
@@ -143,8 +154,10 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
                     String zipcode = visit.getString("zipcode");
                     String birdID = visit.getString("BID");
                     String visitDate = visit.getString("VisitDate"); //Will need to reformate this
+                    locationList.add(birdID + " , " + loc);
                     Log.v("UserCPActivitySuccess", "location: " + loc + " FID: " + feederID + " zipcode: " + zipcode + " BID: " + birdID + " visitDate: " + visitDate);
                 }
+
             }
             catch(Exception ex) {
                 Log.v("UserCPActivitySuccess", "FAILED PARSING JSON!!!");
@@ -181,8 +194,12 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
         @Override
         protected void onPostExecute(String result) {
             Log.v("UserCPActivitySuccess", UserDashBoard);
-            TextView textView = (TextView) getView().findViewById(R.id.listTextView);
-            textView.setText(UserDashBoard);
+            //TextView textView = (TextView) getView().findViewById(R.id.listTextView);
+            //textView.setText(UserDashBoard);
+            Log.v("UserCPActivitySuccess", "length of loc list = " + locationList.size() );
+            // Update the list view
+            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_expandable_list_item_1, locationList);
+            lv.setAdapter(arrayAdapter);
         }
 
     }
