@@ -114,15 +114,36 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
             Log.v("BirdActivity", "response = " + response);
 
             try {
+
+                //Parsing JSON, Will need to be place at appropriate location
                 JSONObject jsonObj = new JSONObject(response);
 
+
+                //Getting the feeder information
                 JSONArray feeders = jsonObj.getJSONArray("Feeders");
 
                 for(int i = 0; i < feeders.length(); i++) {
                     JSONObject feeder = feeders.getJSONObject(i);
-                    String loc = feeder.getString("location");
-                    Log.v("UserCPActivitySuccess", "location " + loc);
+                    String loc = feeder.getString("location"); //This get the location of the feeder
+                    String feederID = feeder.getString("FID"); //Feeder ID
+                    String zipcode = feeder.getString("zipcode"); //zipcode
+                    String status = feeder.getString("status"); //feeder status
+                    Log.v("UserCPActivitySuccess", "location: " + loc + " ID: " + feederID + " zipcode: " + zipcode + " status: " + status);
 
+                }
+
+
+                //Getting the visit information
+                JSONArray visits = jsonObj.getJSONArray("Visits");
+                for(int i = 0; i < visits.length(); i++)
+                {
+                    JSONObject visit = visits.getJSONObject(i);
+                    String loc = visit.getString("location");
+                    String feederID = visit.getString("FID");
+                    String zipcode = visit.getString("zipcode");
+                    String birdID = visit.getString("BID");
+                    String visitDate = visit.getString("VisitDate"); //Will need to reformate this
+                    Log.v("UserCPActivitySuccess", "location: " + loc + " FID: " + feederID + " zipcode: " + zipcode + " BID: " + birdID + " visitDate: " + visitDate);
                 }
             }
             catch(Exception ex) {
@@ -162,13 +183,7 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
             Log.v("UserCPActivitySuccess", UserDashBoard);
             TextView textView = (TextView) getView().findViewById(R.id.listTextView);
             textView.setText(UserDashBoard);
-
-            try {
-                UserDashBoard = GetText();
-
-
-            } catch (IOException e) {
-            }
         }
-        }
+
+    }
 }
