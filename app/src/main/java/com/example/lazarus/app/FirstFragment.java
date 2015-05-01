@@ -1,5 +1,6 @@
 package com.example.lazarus.app;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,11 +8,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -21,6 +24,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -49,6 +53,11 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
     // Arraylist used for visit list
     private ArrayList<String> visitArray;
 
+    // Arraylist used to store everything
+    private ArrayList<String> masterDataFeeder;
+    // Arraylist used to store everything
+    private ArrayList<String> masterDataVisit;
+
     public static FirstFragment create(int page){
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE, page);
@@ -68,8 +77,6 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.first_fragment, container, false);
-       // TextView textView = (TextView) view.findViewById(R.id.listTextView);
-       // textView.setText("Fragment #" + mPage);
 
         button = (Button) view.findViewById(R.id.logout_button);
 
@@ -82,7 +89,14 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
         feederArray = new ArrayList<String>();
         // Initialize the Visit Arraylist
         visitArray = new ArrayList<String>();
+        // Initialize the masterdata arraylist
+        masterDataFeeder = new ArrayList<String>();
+        // Initialize the masterdata arraylist
+        masterDataVisit = new ArrayList<String>();
 
+        // Attach Click listeners for both the lists
+        lv1.setOnItemClickListener(feederClickHandler);
+        lv2.setOnItemClickListener(visitClickHandler);
 
         button.setOnClickListener(this);
         return view;
@@ -154,6 +168,7 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
                     String zipcode = feeder.getString("zipcode"); //zipcode
                     String status = feeder.getString("status"); //feeder status
                     feederArray.add(loc + "," + zipcode);
+                    masterDataFeeder.add(loc + "," + feederID + "," + zipcode + "," + status);
                     Log.v("UserCPActivitySuccess", "location: " + loc + " ID: " + feederID + " zipcode: " + zipcode + " status: " + status);
                 }
 
@@ -168,6 +183,7 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
                     String birdID = visit.getString("BID");
                     String visitDate = visit.getString("VisitDate"); //Will need to reformate this
                     visitArray.add(birdID + " , " + loc);
+                    masterDataVisit.add(loc + "," + feederID + "," + zipcode + "," + birdID + "," + visitDate);
                     Log.v("UserCPActivitySuccess", "location: " + loc + " FID: " + feederID + " zipcode: " + zipcode + " BID: " + birdID + " visitDate: " + visitDate);
                 }
 
@@ -207,10 +223,7 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
         @Override
         protected void onPostExecute(String result) {
             Log.v("UserCPActivitySuccess", UserDashBoard);
-            //TextView textView = (TextView) getView().findViewById(R.id.listTextView);
-            //textView.setText(UserDashBoard);
-            //Log.v("UserCPActivitySuccess", "length of loc list = " + locationList.size() );
-            // Update the list view
+
             ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_expandable_list_item_1, feederArray);
             ArrayAdapter<String> arrayAdapter2 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_expandable_list_item_1, visitArray);
 
@@ -220,9 +233,27 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
             ListUtils.setDynamicHeight(lv1);
             ListUtils.setDynamicHeight(lv2);
         }
-
-
     }
+
+    // Create a message handling object as an anonymous class.
+    private OnItemClickListener feederClickHandler = new OnItemClickListener() {
+        public void onItemClick(AdapterView parent, View v, int position, long id)
+        {
+            Log.v("FirstFragment", "masterdataFeeder[position] = " + masterDataFeeder.get(position));
+            //Intent i = new Intent(this, EditDeleteFeeder.class);
+            //i.putExtra("FEEDER_DATA", masterDataFeeder.get(position));
+        }
+    };
+
+    private OnItemClickListener visitClickHandler = new OnItemClickListener() {
+        public void onItemClick(AdapterView parent, View v, int position, long id)
+        {
+            Log.v("FirstFragment", "masterdataVisit[position] = " + masterDataVisit.get(position) );
+            //Intent i = new Intent(this, EditDeleteVisit.class);
+            //i.putExtra("VISIT_DATA", masterDataVisit.get(position));
+
+        }
+    };
 
     public static class ListUtils {
         public static void setDynamicHeight(ListView mListView) {
