@@ -242,6 +242,7 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
             Log.v("FirstFragment", "masterdataFeeder[position] = " + masterDataFeeder.get(position));
             Intent i = new Intent(getActivity(), EditDeleteFeeder.class);
             i.putExtra("FEEDER_DATA", masterDataFeeder.get(position));
+            startActivity(i);
         }
     };
 
