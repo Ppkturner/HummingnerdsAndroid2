@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/location"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="20"
+        android:id="@+id/edit_location"/>
+
+    <TextView
+        android:id="@+id/edit_country"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/country"/>
+    <Spinner
+        android:id="@+id/country_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown">
+    </Spinner>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/zip_code"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="256"
+        android:id="@+id/zip_code"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/feeder_type"/>
+    <EditText
+        android:id="@+id/feeder_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="256"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/feeder_manu"/>
+    <EditText
+        android:id="@+id/feeder_manu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="256"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/feeder_serial"/>
+    <EditText
+        android:id="@+id/feeder_serial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="256"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/feeder_vol"/>
+    <EditText
+        android:id="@+id/feeder_vol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="256"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/edit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_feeder"/>
+        <Button
+            android:id="@+id/delete_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/delete_feeder"/>
+    </LinearLayout>
+
+</LinearLayout>

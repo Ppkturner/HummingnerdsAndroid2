@@ -240,8 +240,8 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
         public void onItemClick(AdapterView parent, View v, int position, long id)
         {
             Log.v("FirstFragment", "masterdataFeeder[position] = " + masterDataFeeder.get(position));
-            //Intent i = new Intent(this, EditDeleteFeeder.class);
-            //i.putExtra("FEEDER_DATA", masterDataFeeder.get(position));
+            Intent i = new Intent(getActivity(), EditDeleteFeeder.class);
+            i.putExtra("FEEDER_DATA", masterDataFeeder.get(position));
         }
     };
 

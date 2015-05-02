@@ -17,4 +17,14 @@
     <string name="title_activity_user_menu">UserMenu</string>
     <string name="register"> Sign Up </string>
     <string name="logout">Log Out</string>
+    <string name="location">Location</string>
+    <string name="country">Country</string>
+    <string name="zip_code">Zip Code</string>
+    <string name="feeder_type">Feeder Type</string>
+    <string name="feeder_manu">Feeder Manufacturer</string>
+    <string name="feeder_serial">Feeder Serial #</string>
+    <string name="feeder_vol">Feeder Volume</string>
+    <string name="edit_feeder">Edit</string>
+    <string name="delete_feeder">Delete</string>
+    <string name="title_activity_edit_delete_feeder">EditDeleteFeeder</string>
 </resources>
