@@ -53,9 +53,9 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
     // Arraylist used for visit list
     private ArrayList<String> visitArray;
 
-    // Arraylist used to store everything
+    // Arraylist used to store all data of the feeder
     private ArrayList<String> masterDataFeeder;
-    // Arraylist used to store everything
+    // Arraylist used to store all data of the visits
     private ArrayList<String> masterDataVisit;
 
     public static FirstFragment create(int page){
@@ -85,7 +85,7 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
         // Find the listview from the xml
         lv2 = (ListView) view.findViewById(R.id.visitList);
 
-        // Initialize the Feeder Arraylist
+        // Initialize the Feeder ArrayList
         feederArray = new ArrayList<String>();
         // Initialize the Visit Arraylist
         visitArray = new ArrayList<String>();
@@ -108,7 +108,7 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
     }
 
     public void onActivityCreated(Bundle savedInstanceState){
-        super. onActivityCreated(savedInstanceState);
+        super.onActivityCreated(savedInstanceState);
 
         try {
             new PostDataTask().execute();
@@ -157,7 +157,6 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
                 //Parsing JSON, Will need to be place at appropriate location
                 JSONObject jsonObj = new JSONObject(response);
 
-
                 //Getting the feeder information
                 JSONArray feeders = jsonObj.getJSONArray("Feeders");
                 List<String> fList = new ArrayList<String>();
@@ -166,9 +165,15 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
                     String loc = feeder.getString("location"); //This get the location of the feeder
                     String feederID = feeder.getString("FID"); //Feeder ID
                     String zipcode = feeder.getString("zipcode"); //zipcode
+                    String feederManu = feeder.getString("FeederManu"); // Manufacturer
+                    String feederVol = feeder.getString("FeederVolume"); // Feeder Vol
+                    String feederType = feeder.getString("FeederType"); // Feeder Type
                     String status = feeder.getString("status"); //feeder status
+                    String feederSN = feeder.getString("FeederSN");
+                    String country = feeder.getString("country");
                     feederArray.add(loc + "," + zipcode);
-                    masterDataFeeder.add(loc + "," + feederID + "," + zipcode + "," + status);
+                    masterDataFeeder.add(loc + "," + feederID + "," + zipcode + "," + feederManu + "," + feederVol + ","
+                            + feederType + "," + feederSN + "," + country + "," + status);
                     Log.v("UserCPActivitySuccess", "location: " + loc + " ID: " + feederID + " zipcode: " + zipcode + " status: " + status);
                 }
 
