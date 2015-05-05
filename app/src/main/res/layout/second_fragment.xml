@@ -4,8 +4,16 @@
     android:background="@android:color/holo_orange_light" >
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:text="Birds"
+        android:id="@+id/birdTextView"
+        android:background="#ffffffff" />
+
+    <ListView
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="New Text"
-    android:id="@+id/listTextView" />
+        android:id="@+id/birdList"
+        android:fastScrollEnabled="false"
+        android:footerDividersEnabled="true" />
 </LinearLayout>
