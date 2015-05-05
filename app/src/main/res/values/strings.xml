@@ -29,6 +29,7 @@
     <string name="add_feeder">Add Feeder</string>
     <string name="all_feeders">All feeders</string>
     <string name="title_activity_edit_delete_feeder">EditDeleteFeeder</string>
+    <string name="cancel">Cancel</string>
 
     <string-array name="countries_array">
         <item>United States</item>

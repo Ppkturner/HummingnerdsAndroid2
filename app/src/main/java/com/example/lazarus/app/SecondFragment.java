@@ -7,7 +7,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,6 +22,7 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -30,6 +37,11 @@ public class SecondFragment extends Fragment {
     private String BirdData = new String();
 
     private SessionManager session;
+
+    //Creating an array to store the bird information
+    private ArrayList<String> birdsArray;
+    private ArrayList<String> masterBirdArray;
+    private ListView birdListView;  //List view to display the bird data
 
     public static SecondFragment create(int page){
         Bundle args = new Bundle();
@@ -61,7 +73,13 @@ public class SecondFragment extends Fragment {
 
         Log.v("BirdActivityOnCreate", BirdData);
 
-        textView.setText(BirdData);
+        //textView.setText(BirdData);
+
+        //Initialized the array list
+        birdsArray = new ArrayList<String>();
+        masterBirdArray = new ArrayList<String>();
+        // Find the listview from the xml
+        birdListView = (ListView) view.findViewById(R.id.birdList);
 
         return view;
     }
@@ -111,6 +129,36 @@ public class SecondFragment extends Fragment {
             // Response from server after login process will be stored in response variable.
             response = sb.toString();
             Log.v("BirdActivity", "response = " + response);
+
+            try
+            {
+                //convert the response string to json
+                JSONObject jsonObj = new JSONObject(response);
+
+                //Get the json array of birds
+                JSONArray birds = jsonObj.getJSONArray("Birds");
+                for(int i = 0; i < birds.length(); i++)
+                {
+                    JSONObject bird = birds.getJSONObject(i);
+                    String birdID = bird.getString("BID");
+                    String gender = bird.getString("gender");
+                    String age = bird.getString("age");
+                    String feederID = bird.getString("FID");
+                    String name = bird.getString("Name");
+                    String taggedDate = bird.getString("TaggedDate");
+                    String bandNumb = bird.getString("NBBLBandNumb");
+                    String tagType = bird.getString("TagType");
+                    masterBirdArray.add(birdID +"," + gender + "," + age + "," + feederID + "," + name + "," + taggedDate + "," + bandNumb + "," + tagType);
+                    birdsArray.add("BID: " + birdID +"| Gender: " + gender + "| Age: " + age + "| FeederID: " + feederID + "| Name:" + name + "| Tagged Date: " + taggedDate + "| Band Number: " + bandNumb + "| Tag Type: " + tagType);
+                    Log.v("BirdActivity", birdID +" " + gender + " " + age + " " + feederID + " " + name + " " + taggedDate + " " + bandNumb + " " + tagType);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.v("BirdActivity", "FAILED PARSING JSON!!!");
+            }
+
             // You can perform UI operations here
             //Toast.makeText(this, "Message from Server: \n" + response, 0).show();
             isr.close();
@@ -141,9 +189,33 @@ public class SecondFragment extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             Log.v("BirdsActivitySuccess", BirdData);
-            TextView textView = (TextView) getView().findViewById(R.id.listTextView);
+           // TextView textView = (TextView) getView().findViewById(R.id.listTextView);
 
-            textView.setText(BirdData);
+            //textView.setText(BirdData);
+            ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_expandable_list_item_1, birdsArray);
+            birdListView.setAdapter(arrayAdapter1);
+            ListUtils_bird.setDynamicHeight(birdListView);
+        }
+    }
+
+    public static class ListUtils_bird {
+        public static void setDynamicHeight(ListView mListView) {
+            ListAdapter mListAdapter = mListView.getAdapter();
+            if (mListAdapter == null) {
+                // when adapter is null
+                return;
+            }
+            int height = 0;
+            int desiredWidth = View.MeasureSpec.makeMeasureSpec(mListView.getWidth(), View.MeasureSpec.UNSPECIFIED);
+            for (int i = 0; i < mListAdapter.getCount(); i++) {
+                View listItem = mListAdapter.getView(i, null, mListView);
+                listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+                height += listItem.getMeasuredHeight();
+            }
+            ViewGroup.LayoutParams params = mListView.getLayoutParams();
+            params.height = height + (mListView.getDividerHeight() * (mListAdapter.getCount() - 1));
+            mListView.setLayoutParams(params);
+            mListView.requestLayout();
         }
     }
 }
