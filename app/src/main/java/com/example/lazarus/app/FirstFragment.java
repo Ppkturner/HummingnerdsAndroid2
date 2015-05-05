@@ -71,6 +71,7 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         mPage = getArguments().getInt(ARG_PAGE);
         session = new SessionManager(getActivity());
+
     }
 
     @Override
@@ -99,6 +100,10 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
         lv2.setOnItemClickListener(visitClickHandler);
 
         button.setOnClickListener(this);
+
+
+        Log.v("FirstFragment", "On CREATE MF!!!");
+
         return view;
     }
 
@@ -237,6 +242,11 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
 
             ListUtils.setDynamicHeight(lv1);
             ListUtils.setDynamicHeight(lv2);
+
+            arrayAdapter1.notifyDataSetChanged();
+            arrayAdapter2.notifyDataSetChanged();
+
+
         }
     }
 
@@ -248,7 +258,9 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
             Log.v("FirstFragment", "masterdataFeeder[position] = " + masterDataFeeder.get(position));
             Intent i = new Intent(getActivity(), EditDeleteFeeder.class);
             i.putExtra("FEEDER_DATA", masterDataFeeder.get(position) + "," + user_prefs.get("uid"));
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
+            getActivity().finish();
         }
     };
 

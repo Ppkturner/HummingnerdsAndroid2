@@ -87,8 +87,18 @@ public class EditDeleteFeeder extends ActionBarActivity implements View.OnClickL
                 try {
                     new PostDataTask().execute();
                     AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-                    builder1.setMessage("Edit Action was successful.");
+                    builder1.setMessage("Edit action was successful.");
                     builder1.setCancelable(true);
+                    builder1.setPositiveButton("Okay",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    Intent i = new Intent(EditDeleteFeeder.this, UserMenu.class);
+                                    startActivity(i);
+                                    //finish();
+
+                                }
+                            });
+
                     AlertDialog alert11 = builder1.create();
                     alert11.show();
                     //startActivity(new Intent(this, FirstFragment.class));
