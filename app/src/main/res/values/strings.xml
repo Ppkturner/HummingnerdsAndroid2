@@ -27,6 +27,7 @@
     <string name="edit_feeder">Edit</string>
     <string name="delete_feeder">Delete</string>
     <string name="title_activity_edit_delete_feeder">EditDeleteFeeder</string>
+    <string name="cancel">Cancel</string>
 
     <string-array name="countries_array">
         <item>United States</item>

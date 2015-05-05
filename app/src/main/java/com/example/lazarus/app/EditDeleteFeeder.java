@@ -30,7 +30,7 @@ import java.util.Locale;
 
 public class EditDeleteFeeder extends ActionBarActivity implements View.OnClickListener {
 
-    private Button edit_button, delete_button;
+    private Button edit_button, delete_button, cancel_button;
     private EditText edit_location, zip_code, feeder_type, feeder_serial, feeder_vol, feeder_manu;
     private Spinner country_list;
     private String feeder_data;
@@ -41,6 +41,7 @@ public class EditDeleteFeeder extends ActionBarActivity implements View.OnClickL
         setContentView(R.layout.activity_edit_delete_feeder);
         edit_button = (Button) findViewById(R.id.edit_button);
         delete_button = (Button) findViewById(R.id.delete_button);
+        cancel_button = (Button) findViewById(R.id.cancel_button);
 
         // Find the specific buttons
         edit_location = (EditText) findViewById(R.id.edit_location);
@@ -76,6 +77,7 @@ public class EditDeleteFeeder extends ActionBarActivity implements View.OnClickL
 
         edit_button.setOnClickListener(this);
         delete_button.setOnClickListener(this);
+        cancel_button.setOnClickListener(this);
 
         Log.v("EditDeleteFeeder", feeder_data);
     }
@@ -101,7 +103,7 @@ public class EditDeleteFeeder extends ActionBarActivity implements View.OnClickL
 
                     AlertDialog alert11 = builder1.create();
                     alert11.show();
-                    //startActivity(new Intent(this, FirstFragment.class));
+                    startActivity(new Intent(this, UserMenu.class));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -116,9 +118,13 @@ public class EditDeleteFeeder extends ActionBarActivity implements View.OnClickL
                     AlertDialog alert11 = builder1.create();
                     alert11.show();
                     this.finish();
+                    startActivity(new Intent(this, UserMenu.class));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                break;
+            case R.id.cancel_button:
+                startActivity(new Intent(this, UserMenu.class));
                 break;
         }
     }
