@@ -101,9 +101,6 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
 
         button.setOnClickListener(this);
 
-
-        Log.v("FirstFragment", "On CREATE MF!!!");
-
         return view;
     }
 

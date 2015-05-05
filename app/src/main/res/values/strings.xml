@@ -26,6 +26,8 @@
     <string name="feeder_vol">Feeder Volume</string>
     <string name="edit_feeder">Edit</string>
     <string name="delete_feeder">Delete</string>
+    <string name="add_feeder">Add Feeder</string>
+    <string name="all_feeders">All feeders</string>
     <string name="title_activity_edit_delete_feeder">EditDeleteFeeder</string>
 
     <string-array name="countries_array">

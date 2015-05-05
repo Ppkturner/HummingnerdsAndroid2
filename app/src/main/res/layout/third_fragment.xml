@@ -1,11 +1,43 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/holo_green_light" >
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:id="@+id/scrollViewFirstFragment"
+android:fillViewport="true">
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:background="@android:color/holo_green_light"
+    android:weightSum="1">
+
+    <Button
+        android:id="@+id/add_feeder_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_feeder"
+        android:layout_marginTop="12dp"
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
+        android:text="@string/all_feeders"
         android:id="@+id/listTextView" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/feederList"
+        android:focusable="false"
+        android:dividerHeight="0.1dp"
+        android:focusableInTouchMode="false"
+        android:footerDividersEnabled="true"
+        android:background="#ffff9838"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/logout_button"
+        android:layout_weight="0.48" />
+
 </LinearLayout>
+</ScrollView>
