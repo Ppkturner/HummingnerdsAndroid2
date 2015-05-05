@@ -34,6 +34,10 @@
             android:name=".AddFeeder"
             android:label="@string/title_activity_add_feeder" >
         </activity>
+        <activity
+            android:name=".SpeciesActivityPage"
+            android:label="@string/title_activity_species_activity_page" >
+        </activity>
     </application>
 
 </manifest>

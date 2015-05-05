@@ -26,6 +26,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -165,9 +166,12 @@ public class ThirdFragment extends Fragment {
                     //String status = feeder.getString("status"); //feeder status
                     String feederSN = feeder.getString("FeederSN");
                     String country = feeder.getString("name");
+
+                    String indexCountry = "" + Arrays.asList(this.getResources().getStringArray(R.array.countries_array)).indexOf(country);
+
                     feederArray.add(loc + "," + zipcode);
                     masterDataFeeder.add(loc + "," + feederID + "," + zipcode + "," + feederManu + "," + feederVol + ","
-                            + feederType + "," + feederSN + "," + country);
+                            + feederType + "," + feederSN + "," + indexCountry);
                     Log.v("ThirdFragment", "location: " + loc + " ID: " + feederID + " zipcode: " + zipcode);
                 }
 
@@ -228,11 +232,12 @@ public class ThirdFragment extends Fragment {
         {
             HashMap<String, String> user_prefs = session.getUserDetail();
             Log.v(this.getClass().getSimpleName(), user_prefs.toString());
-            /*Intent i = new Intent(getActivity(), EditDeleteFeeder.class);
+            Log.v("ThirdFragment", "masterdataFeeder[position] = " + masterDataFeeder.get(position));
+            Intent i = new Intent(getActivity(), EditDeleteFeeder.class);
             i.putExtra("FEEDER_DATA", masterDataFeeder.get(position) + "," + user_prefs.get("uid"));
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
-            getActivity().finish();*/
+            getActivity().finish();
             Log.v(this.getClass().getSimpleName(), "Shit got clicked.");
         }
     };

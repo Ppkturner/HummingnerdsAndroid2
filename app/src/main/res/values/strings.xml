@@ -276,4 +276,5 @@
         <item>Zimbabwe</item>
     </string-array>
     <string name="title_activity_add_feeder">AddFeeder</string>
+    <string name="title_activity_species_activity_page">SpeciesActivityPage</string>
 </resources>
