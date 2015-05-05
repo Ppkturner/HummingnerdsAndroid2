@@ -277,4 +277,5 @@
     </string-array>
     <string name="title_activity_add_feeder">AddFeeder</string>
     <string name="title_activity_species_activity_page">SpeciesActivityPage</string>
+    <string name="title_activity_edit_delete_birds">EditDeleteBirds</string>
 </resources>

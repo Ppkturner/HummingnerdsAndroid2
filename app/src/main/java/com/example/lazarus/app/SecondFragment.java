@@ -1,5 +1,6 @@
 package com.example.lazarus.app;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -80,7 +82,7 @@ public class SecondFragment extends Fragment {
         masterBirdArray = new ArrayList<String>();
         // Find the listview from the xml
         birdListView = (ListView) view.findViewById(R.id.birdList);
-
+        birdListView.setOnItemClickListener(birdClickHandler);
         return view;
     }
 
@@ -197,6 +199,16 @@ public class SecondFragment extends Fragment {
             ListUtils_bird.setDynamicHeight(birdListView);
         }
     }
+
+    private AdapterView.OnItemClickListener birdClickHandler = new AdapterView.OnItemClickListener() {
+        public void onItemClick(AdapterView parent, View v, int position, long id)
+        {
+            //Log.v("FirstFragment", "masterdataVisit[position] = " + masterDataVisit.get(position) );
+            Intent i = new Intent(getActivity(), EditDeleteBirds.class);
+            //i.putExtra("VISIT_DATA", masterDataVisit.get(position));
+            startActivity(i);
+        }
+    };
 
     public static class ListUtils_bird {
         public static void setDynamicHeight(ListView mListView) {

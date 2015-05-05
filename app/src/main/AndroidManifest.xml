@@ -38,6 +38,10 @@
             android:name=".SpeciesActivityPage"
             android:label="@string/title_activity_species_activity_page" >
         </activity>
+        <activity
+            android:name=".EditDeleteBirds"
+            android:label="@string/title_activity_edit_delete_birds" >
+        </activity>
     </application>
 
 </manifest>

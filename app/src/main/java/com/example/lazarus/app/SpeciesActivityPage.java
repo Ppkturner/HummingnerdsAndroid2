@@ -18,7 +18,9 @@ public class SpeciesActivityPage extends ActionBarActivity {
 
         // Stuff to do with webview goes here possibly
         speciesWebView = (WebView) findViewById(R.id.webView);
-        String body = "<h1>Species Title</h1> <p> Hey Wyatt!! </p>";
+        String body = "<h1>Species: Temp Species</h1> <p> Lorem ipsum dolor sit amet, at pri mollis percipit mediocritatem, duo alienum nostrum definitionem te, facete aliquam ex nam. Ius vero pertinacia omittantur at, ad molestie scribentur duo. Accusam scaevola \n" +
+                "\n" +
+                "definitiones vel ei, sit quas ferri in, vix in sint liber. Pri natum diceret dissentiet te, ut debet affert efficiendi duo. Delectus similique no has, per ad feugiat erroribus definitiones, iracundia voluptaria sit no. Quo quod periculis ex, porro intellegebat ea mel. At quem veri eum.rnrnEt aeterno fabellas ocurreret usu, ad cum propriae lobortis delicata, eos ei tritani prompta. No has choro melius accusam, dicit repudiare at mel. Quem tale in has, errem nostrum constituto ut sit. Audiam aperiam ut sea. Ea facer necessitatibus nec, eripuit omittantur definitiones ad sit, cum ut doming temporibus.rnrnNam id dicit clita scripserit, no eos graece petentium disputando. Fugit impetus eu pri, percipit constituto repudiandae ea quo. An prima appareat his. Vel ubique denique te.rnrnOratio soleat pro id. Enim nonumy nemore sea no. Usu solum ullum audire ea, ad  </p>";
         speciesWebView.loadData(body, "text/html", null);
     }
 
