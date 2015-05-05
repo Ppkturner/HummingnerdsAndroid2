@@ -74,7 +74,7 @@ public class UserMenu extends FragmentActivity {
         public CharSequence getPageTitle(int position) {
             switch(position){
                 case 0:
-                    return("User Settings");
+                    return("Dashboard");
                 case 1:
                     return("Birds");
                 case 2:

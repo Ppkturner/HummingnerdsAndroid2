@@ -30,6 +30,10 @@
             android:name=".EditDeleteFeeder"
             android:label="@string/title_activity_edit_delete_feeder" >
         </activity>
+        <activity
+            android:name=".AddFeeder"
+            android:label="@string/title_activity_add_feeder" >
+        </activity>
     </application>
 
 </manifest>

@@ -35,6 +35,7 @@ public class EditDeleteFeeder extends ActionBarActivity implements View.OnClickL
     private Spinner country_list;
     private String feeder_data;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +56,6 @@ public class EditDeleteFeeder extends ActionBarActivity implements View.OnClickL
         Intent intent = getIntent();
 
         feeder_data = intent.getStringExtra("FEEDER_DATA");
-
         String[] split_data = feeder_data.split(",");
 
         edit_location.setText(split_data[0]);
@@ -64,6 +64,7 @@ public class EditDeleteFeeder extends ActionBarActivity implements View.OnClickL
         feeder_vol.setText(split_data[4]);
         feeder_type.setText(split_data[5]);
         feeder_serial.setText(split_data[6]);
+
 
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -103,7 +104,7 @@ public class EditDeleteFeeder extends ActionBarActivity implements View.OnClickL
 
                     AlertDialog alert11 = builder1.create();
                     alert11.show();
-                    startActivity(new Intent(this, UserMenu.class));
+                    //startActivity(new Intent(this, UserMenu.class));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -149,17 +150,17 @@ public class EditDeleteFeeder extends ActionBarActivity implements View.OnClickL
     }
 
     private class PostDataTask extends AsyncTask<String, Void, String> {
-        @Override
-        protected String doInBackground(String... urls) {
+            @Override
+            protected String doInBackground(String... urls) {
 
-            // params comes from the execute() call: params[0] is the url.
-            try {
-                GetText();
-                return "Success";
-            } catch (IOException e) {
-                return "Unable to retrieve web page. URL may be invalid.";
+                // params comes from the execute() call: params[0] is the url.
+                try {
+                    GetText();
+                    return "Success";
+                } catch (IOException e) {
+                    return "Unable to retrieve web page. URL may be invalid.";
+                }
             }
-        }
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(String result) {
