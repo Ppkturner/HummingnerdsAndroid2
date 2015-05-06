@@ -30,6 +30,8 @@
     <string name="all_feeders">All feeders</string>
     <string name="title_activity_edit_delete_feeder">EditDeleteFeeder</string>
     <string name="cancel">Cancel</string>
+    <string name="edit_password">Change your pasword here.</string>
+    <string name="confirm">Confirm</string>
 
     <string-array name="countries_array">
         <item>United States</item>
