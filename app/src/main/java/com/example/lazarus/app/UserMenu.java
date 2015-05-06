@@ -44,7 +44,7 @@ public class UserMenu extends FragmentActivity {
     }
 
     public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
-        final int PAGE_COUNT = 3;
+        final int PAGE_COUNT = 4;
 
         public SampleFragmentPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -65,6 +65,8 @@ public class UserMenu extends FragmentActivity {
                     return SecondFragment.create(position);
                 case 2:
                     return ThirdFragment.create(position);
+                case 3:
+                    return AuthorFragment.create(position);
                 default:
                     return PageFragment.create(position);
             }
@@ -79,6 +81,8 @@ public class UserMenu extends FragmentActivity {
                     return("Birds");
                 case 2:
                     return("Bird Feeders");
+                case 3:
+                    return("Developers");
                 default:
                     return("Page" + position);
             }
