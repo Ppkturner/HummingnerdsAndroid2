@@ -150,7 +150,8 @@ public class SecondFragment extends Fragment {
                     String taggedDate = bird.getString("TaggedDate");
                     String bandNumb = bird.getString("NBBLBandNumb");
                     String tagType = bird.getString("TagType");
-                    masterBirdArray.add(birdID +"," + gender + "," + age + "," + feederID + "," + name + "," + taggedDate + "," + bandNumb + "," + tagType);
+                    String rfidTag = bird.getString("rfidTagId");
+                    masterBirdArray.add(birdID +"," + gender + "," + age + "," + feederID + "," + name + "," + taggedDate + "," + bandNumb + "," + tagType + "," + rfidTag);
                     birdsArray.add("BID: " + birdID +"| Gender: " + gender + "| Age: " + age + "| FeederID: " + feederID + "| Name:" + name + "| Tagged Date: " + taggedDate + "| Band Number: " + bandNumb + "| Tag Type: " + tagType);
                     Log.v("BirdActivity", birdID +" " + gender + " " + age + " " + feederID + " " + name + " " + taggedDate + " " + bandNumb + " " + tagType);
 
@@ -191,7 +192,7 @@ public class SecondFragment extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             Log.v("BirdsActivitySuccess", BirdData);
-           // TextView textView = (TextView) getView().findViewById(R.id.listTextView);
+            // TextView textView = (TextView) getView().findViewById(R.id.listTextView);
 
             //textView.setText(BirdData);
             ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_expandable_list_item_1, birdsArray);
@@ -203,10 +204,13 @@ public class SecondFragment extends Fragment {
     private AdapterView.OnItemClickListener birdClickHandler = new AdapterView.OnItemClickListener() {
         public void onItemClick(AdapterView parent, View v, int position, long id)
         {
-            //Log.v("FirstFragment", "masterdataVisit[position] = " + masterDataVisit.get(position) );
+            HashMap<String, String> user_prefs = session.getUserDetail();
+            Log.v("SecondFragment", "masterbirdarray[position] = " + masterBirdArray.get(position));
             Intent i = new Intent(getActivity(), EditDeleteBirds.class);
-            //i.putExtra("VISIT_DATA", masterDataVisit.get(position));
+            i.putExtra("BIRD_DATA", masterBirdArray.get(position) + "," + user_prefs.get("uid"));
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
+            getActivity().finish();
         }
     };
 
