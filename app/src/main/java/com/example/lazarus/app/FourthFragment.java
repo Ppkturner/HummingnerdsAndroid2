@@ -58,7 +58,7 @@ public class FourthFragment extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.first_fragment, container, false);
+        View view = inflater.inflate(R.layout.fourth_fragment, container, false);
 
         confirm_change = (Button) view.findViewById(R.id.logout_button);
         pass = (EditText) view.findViewById((R.id.passwordField));
