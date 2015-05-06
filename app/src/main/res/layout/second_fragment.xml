@@ -3,6 +3,14 @@
     android:layout_height="match_parent"
     android:background="@android:color/holo_orange_light" >
 
+    <Button
+        android:id="@+id/add_bird_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Bird"
+        android:layout_marginTop="12dp"
+        android:layout_centerHorizontal="true"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="32dp"
@@ -12,7 +20,7 @@
 
     <ListView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:id="@+id/birdList"
         android:fastScrollEnabled="false"
         android:footerDividersEnabled="true" />

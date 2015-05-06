@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -45,6 +46,8 @@ public class SecondFragment extends Fragment {
     private ArrayList<String> masterBirdArray;
     private ListView birdListView;  //List view to display the bird data
 
+    private Button add_bird_butt;
+
     public static SecondFragment create(int page){
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE, page);
@@ -59,6 +62,7 @@ public class SecondFragment extends Fragment {
         mPage = getArguments().getInt(ARG_PAGE);
 
         session = new SessionManager(getActivity());
+
     }
 
     @Override
@@ -83,6 +87,17 @@ public class SecondFragment extends Fragment {
         // Find the listview from the xml
         birdListView = (ListView) view.findViewById(R.id.birdList);
         birdListView.setOnItemClickListener(birdClickHandler);
+
+        add_bird_butt = (Button) view.findViewById(R.id.add_bird_button);
+        add_bird_butt.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                Log.v(ThirdFragment.class.getSimpleName(), "Add Bird  Button was clicked.");
+                Intent i = new Intent(getActivity(), NewBird.class);
+                HashMap<String, String> user_prefs = session.getUserDetail();
+                i.putExtra("USER_PREFS_DATA", user_prefs.get("uid"));
+                startActivity(i);
+            }
+        });
         return view;
     }
 

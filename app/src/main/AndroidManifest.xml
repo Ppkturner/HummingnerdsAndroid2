@@ -42,6 +42,10 @@
             android:name=".EditDeleteBirds"
             android:label="@string/title_activity_edit_delete_birds" >
         </activity>
+        <activity
+            android:name=".NewBird"
+            android:label="@string/title_activity_new_bird" >
+        </activity>
     </application>
 
 </manifest>

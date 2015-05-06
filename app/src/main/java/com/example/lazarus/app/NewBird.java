@@ -25,25 +25,23 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 
 
-public class EditDeleteBirds extends ActionBarActivity  implements View.OnClickListener {
+public class NewBird extends ActionBarActivity  implements View.OnClickListener {
 
     Spinner spec_list, bird_age;
     private RadioGroup radioSexGroup;
     private RadioButton radioSexMale;
     private RadioButton radioSexFemale;
     private EditText birdTag, birdBand;
-    private Button edit_button, delete_button, cancel_button;
+    private Button add_button, cancel_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_delete_birds);
+        setContentView(R.layout.activity_new_bird);
 
-        edit_button = (Button) findViewById(R.id.edit_button);
-        delete_button = (Button) findViewById(R.id.delete_button);
+        add_button = (Button) findViewById(R.id.add_button);
         cancel_button = (Button) findViewById(R.id.cancel_button);
 
         radioSexGroup = (RadioGroup) findViewById(R.id.bird_radio_group);
@@ -69,43 +67,14 @@ public class EditDeleteBirds extends ActionBarActivity  implements View.OnClickL
         speciesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spec_list.setAdapter(speciesAdapter);
 
-        Intent i = getIntent();
-        String bird_data = i.getStringExtra("BIRD_DATA");
-        String[] split_data = bird_data.split(",");
-        // 0 --> birdId
-        // 1 --> gender
-        // 2 --> age
-        // 3 --> feederId
-        // 4 --> name
-        // 5 --> taggeddate
-        // 6 --> bandNum
-        // 7 --> tagType
-        // 8 --> RfidTag
-        bird_age.setSelection(Integer.parseInt(split_data[2]) - 1);
-        // Get the gender
-        // If M, then check the male button
-        // Else, check the female radio button
-        if(split_data[1].equals("M")) {
-            radioSexMale.setChecked(true);
-            //radioSexFemale.setChecked(false);
-        }
-        if(split_data[1].equals("F")) {
-            radioSexFemale.setChecked(true);
-            //radioSexFemale.setChecked(false);
-        }
-
-        birdTag.setText(split_data[6]);
-        birdBand.setText(split_data[8]);
-
-        edit_button.setOnClickListener(this);
-        delete_button.setOnClickListener(this);
+        add_button.setOnClickListener(this);
         cancel_button.setOnClickListener(this);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_edit_delete_birds, menu);
+        getMenuInflater().inflate(R.menu.menu_new_bird, menu);
         return true;
     }
 
@@ -127,16 +96,16 @@ public class EditDeleteBirds extends ActionBarActivity  implements View.OnClickL
     @Override
     public void onClick(View v){
         switch(v.getId()){
-            case R.id.edit_button:
+            case R.id.add_button:
                 try {
                     new PostDataTask().execute();
                     AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-                    builder1.setMessage("Edit action was successful.");
+                    builder1.setMessage("Successfully added the Bird.");
                     builder1.setCancelable(true);
                     builder1.setPositiveButton("Okay",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    Intent i = new Intent(EditDeleteBirds.this, UserMenu.class);
+                                    Intent i = new Intent(NewBird.this, UserMenu.class);
                                     startActivity(i);
                                     //finish();
 
@@ -150,43 +119,9 @@ public class EditDeleteBirds extends ActionBarActivity  implements View.OnClickL
                     e.printStackTrace();
                 }
                 break;
-            case R.id.delete_button:
-                try {
-                    // WARNING:- DESTRUCTIVE ACTION. COMMENTED OUT FOR THE MOMENT
-                    //new PostDeleteTask().execute();
-                    AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-                    builder1.setMessage("Delete Action was successful.");
-                    builder1.setCancelable(true);
-                    AlertDialog alert11 = builder1.create();
-                    alert11.show();
-                    this.finish();
-                    startActivity(new Intent(this, UserMenu.class));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                break;
             case R.id.cancel_button:
                 startActivity(new Intent(this, UserMenu.class));
                 break;
-        }
-    }
-
-    private class PostDeleteTask extends AsyncTask<String, Void, String> {
-        @Override
-        protected String doInBackground(String... urls) {
-
-            // params comes from the execute() call: params[0] is the url.
-            try {
-                DeleteFeeder();
-                return "Success";
-            } catch (Exception ex) {
-                return "Unable to retrieve web page. URL may be invalid.";
-            }
-        }
-        // onPostExecute displays the results of the AsyncTask.
-        @Override
-        protected void onPostExecute(String result) {
-            Log.v("EditDeleteFeeder", "On Post Delete Executed Successfully!!");
         }
     }
 
@@ -205,7 +140,7 @@ public class EditDeleteBirds extends ActionBarActivity  implements View.OnClickL
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(String result) {
-            Log.v("EditDeleteFeeder", "On Post Edit Executed Successfully!!");
+            Log.v("AddFeeder", "On Post Edit Executed Successfully!!");
         }
     }
 
@@ -214,23 +149,12 @@ public class EditDeleteBirds extends ActionBarActivity  implements View.OnClickL
         HttpURLConnection connection;
         OutputStreamWriter request;
 
-        Intent intent = getIntent();
-        String bird_data = intent.getStringExtra("BIRD_DATA");
-        String[] split_data = bird_data.split(",");
-
-        // 0 --> birdId
-        // 1 --> gender
-        // 2 --> age
-        // 3 --> feederId
-        // 4 --> name
-        // 5 --> taggeddate
-        // 6 --> bandNum
-        // 7 --> tagType
-        // 8 --> RfidTag
-
         // get selected radio button from radioGroup
         int selectedId = radioSexGroup.getCheckedRadioButtonId();
         RadioButton radioSexButton = (RadioButton) findViewById(selectedId);
+
+        Intent intent = getIntent();
+        String bird_data = intent.getStringExtra("USER_PREFS_DATA");
 
         URL url = null;
         String response = null;
@@ -241,12 +165,11 @@ public class EditDeleteBirds extends ActionBarActivity  implements View.OnClickL
                 +"&bandnum="+birdBand.getText().toString()
                 +"&Submit=true";
 
-        Log.v("EditDeleteBirds", parameters);
+        Log.v("AddBird", parameters);
+
         try
         {
-            //url = new URL("bla");
-            url = new URL("http://www.193.dwellis.com/android.php?bird=add&uid="+split_data[split_data.length - 1]);
-            //Log.v("EditDeleteFeeder", "http://www.193.dwellis.com/android.php?feeder=edit&fid="+split_data[1]);
+            url = new URL("http://www.193.dwellis.com/android.php?bird=add&uid="+bird_data);
             connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -266,7 +189,7 @@ public class EditDeleteBirds extends ActionBarActivity  implements View.OnClickL
             }
 
             response = sb.toString();
-            Log.v("EditDeleteBirds", "response = " + response);
+            Log.v("AddBird", "response = " + response);
             isr.close();
             reader.close();
 
@@ -275,57 +198,7 @@ public class EditDeleteBirds extends ActionBarActivity  implements View.OnClickL
         {
             // Error
             e.printStackTrace();
-            Log.v("EditDeleteBirds", "Failed to execute POST on EDIT action.");
-        }
-
-    }
-
-   public  void  DeleteFeeder()  throws UnsupportedEncodingException
-    {
-        HttpURLConnection connection;
-        OutputStreamWriter request;
-
-        Intent intent = getIntent();
-        String bird_data = intent.getStringExtra("BIRD_DATA");
-        String[] split_data = bird_data.split(",");
-
-        String parameters = "";
-        URL url = null;
-        String response = null;
-
-        try
-        {
-            url = new URL("http://www.193.dwellis.com/android.php?bird=delete&fid="+split_data[1]+"&uid="+split_data[split_data.length - 1]);
-            Log.v("EditDeleteBird", "http://www.193.dwellis.com/android.php?feeder=edit&fid="+split_data[1]);
-            connection = (HttpURLConnection) url.openConnection();
-            connection.setDoOutput(true);
-            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-            connection.setRequestMethod("POST");
-
-            request = new OutputStreamWriter(connection.getOutputStream());
-            request.write(parameters);
-            request.flush();
-            request.close();
-            String line = "";
-            InputStreamReader isr = new InputStreamReader(connection.getInputStream());
-            BufferedReader reader = new BufferedReader(isr);
-            StringBuilder sb = new StringBuilder();
-            while ((line = reader.readLine()) != null)
-            {
-                sb.append(line + "\n");
-            }
-
-            response = sb.toString();
-            Log.v("EditDeleteBirds", "response = " + response);
-            isr.close();
-            reader.close();
-
-        }
-        catch(Exception e)
-        {
-            // Error
-            e.printStackTrace();
-            Log.v("EditDeleteBirds", "Failed to execute POST on DELETE action.");
+            Log.v("AddBird", "Failed to execute POST on ADD action.");
         }
 
     }
