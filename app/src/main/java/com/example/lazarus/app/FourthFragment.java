@@ -60,7 +60,7 @@ public class FourthFragment extends Fragment implements View.OnClickListener{
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fourth_fragment, container, false);
 
-        confirm_change = (Button) view.findViewById(R.id.logout_button);
+        confirm_change = (Button) view.findViewById(R.id.change_password);
         pass = (EditText) view.findViewById((R.id.passwordField));
         confirm_pass = (EditText) view.findViewById(R.id.confirmPasswordField);
 
