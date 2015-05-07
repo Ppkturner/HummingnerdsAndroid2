@@ -108,13 +108,13 @@ public class FourthFragment extends Fragment implements View.OnClickListener{
         pass_str = pass.getText().toString();
         confirm_pass_str = confirm_pass.getText().toString();
 
-        String parameters = "&password="+pass_str+"&password2="+confirm_pass_str;
+        String parameters = "&password="+pass_str+"&password2="+confirm_pass_str+"&Submit=true";
 
         Log.v("UserSettings", parameters);
         try
         {
-            url = new URL("http://www.193.dwellis.com/android.php?user=settings&uid=" + session.getUserDetail().get("KEY_UID"));
-            Log.v("UserSettings", "http://www.193.dwellis.com/android.php?user=settings&uid="+session.getUserDetail().get("KEY_UID"));
+            url = new URL("http://www.193.dwellis.com/android.php?user=settings&uid=" + session.getUserDetail().get("uid"));
+            Log.v("UserSettings", "http://www.193.dwellis.com/android.php?user=settings&uid="+session.getUserDetail().get("uid"));
             connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");

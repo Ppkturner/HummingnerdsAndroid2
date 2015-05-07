@@ -112,7 +112,7 @@ public class EditDeleteFeeder extends ActionBarActivity implements View.OnClickL
             case R.id.delete_button:
                 try {
                     // WARNING:- DESTRUCTIVE ACTION. COMMENTED OUT FOR THE MOMENT
-                    //new PostDeleteTask().execute();
+                    new PostDeleteTask().execute();
                     AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
                     builder1.setMessage("Delete Action was successful.");
                     builder1.setCancelable(true);
