@@ -1,5 +1,7 @@
 package com.example.lazarus.app;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.provider.Settings;
@@ -26,17 +28,23 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.lang.Character;
 
-
 public class Login extends ActionBarActivity{
     TextView content;
+    // Text fields for email and password
     EditText email, pass;
+    // String contents stored in the email and password
     String Email, Pass;
+    // Session manager used for logging in and logging out
     SessionManager session;
+    boolean loginFailed = false;
+    final Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        // Initialize all the UI elements
         session = new SessionManager(getApplicationContext());
         email = (EditText)findViewById(R.id.usernameField);
         pass =  (EditText)findViewById(R.id.passwordField);
@@ -44,8 +52,6 @@ public class Login extends ActionBarActivity{
 
     public void clickFunction(View v)
     {
-        Intent intent = new Intent(this, SignUp.class);
-
         switch(v.getId()){
             case R.id.login_button:
                 session.clearUserPrefs();
@@ -56,6 +62,7 @@ public class Login extends ActionBarActivity{
                 }
                 break;
             case R.id.link_to_register:
+                Intent intent = new Intent(this, SignUp.class);
                 startActivity(intent);
                 break;
         }
@@ -76,8 +83,31 @@ public class Login extends ActionBarActivity{
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(String result) {
-            Log.v("LoginActivity", "SUCCESSS!!");
-            session.checkLogin();
+            Log.v("LoginActivity", "On Post Execute was successful!!");
+            String titleMessage = "";
+            String mainMessage = "";
+            if(loginFailed) {
+                titleMessage = "Login failed";
+                mainMessage = "Wrong username or password";
+            }
+            else {
+                titleMessage = "Login Successful";
+                mainMessage = "Username and password was correct.";
+            }
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
+            builder1.setTitle(titleMessage);
+            builder1.setMessage(mainMessage);
+            builder1.setCancelable(true);
+            builder1.setPositiveButton("Okay",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            session.checkLogin();
+                        }
+                    });
+
+            AlertDialog alert11 = builder1.create();
+            alert11.show();
+
         }
     }
 
@@ -123,14 +153,11 @@ public class Login extends ActionBarActivity{
             String token_gid = "";
             String token_uid = "";
             String temp = "";
-            Log.v("LoginActivity", "value = " + (tokens[0] == response));
+            //Log.v("LoginActivity", "value = " + (tokens[0] == response));
             if (!(tokens[0] == response)){
                 String[] tokens1 = tokens[1].split("[:]");
                 String[] tokens2 = tokens[2].split("[:]");
-//                ((GlobalVariable)this.getApplication()).setGroup(tokens1[1]);
-//                ((GlobalVariable)this.getApplication()).setUsername(tokens2[1]);
                 for(int j = 0; j < tokens1[1].toCharArray().length; j++) {
-//                    Log.v("LoginActivity", Character.toString(tokens[1].toCharArray()[j]));
                     if (Character.isDigit(tokens1[1].toCharArray()[j])){
                         temp += tokens1[1].toCharArray()[j];
                     }
@@ -148,20 +175,15 @@ public class Login extends ActionBarActivity{
                 Log.v("LoginActivity", "gid = " + token_gid + " uid = " + token_uid);
             }
             else if (tokens[0] == response){
-                Log.v("LoginActivity", "response = " + response);
+                loginFailed = true;
             }
-            // You can perform UI operations here
-            //Toast.makeText(this, "Message from Server: \n" + response, 0).show();
             isr.close();
             reader.close();
-
         }
         catch(IOException e)
         {
-            // Error
+            e.printStackTrace();
         }
-        // Show response on activity
-        //content.setText( text  );
     }
 
 }

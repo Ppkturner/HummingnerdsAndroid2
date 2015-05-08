@@ -1,5 +1,8 @@
 package com.example.lazarus.app;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
@@ -11,6 +14,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -26,6 +32,8 @@ public class SignUp extends ActionBarActivity {
     EditText name, email, pass, confirm_pass,organization;
     RadioGroup user_type;
     String Name, Email, Pass, Confirm_Pass, Organization, User_Type;
+    boolean regFailed = false;
+    final Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +60,7 @@ public class SignUp extends ActionBarActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                startActivity(intent);
+                //startActivity(intent);
                 break;
             case R.id.already_member:
                 startActivity(intent);
@@ -75,7 +83,31 @@ public class SignUp extends ActionBarActivity {
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(String result) {
-            Log.v("RegisterActivity", "SUCCESSS!!");
+            Log.v("RegisterActivity", "On Post Successfully executed for Register!!");
+            final Intent intent = new Intent(context, Login.class);
+            String titleMessage = "";
+            String mainMessage = "";
+            if(!regFailed) {
+                titleMessage = "Registration failed";
+                mainMessage = "Fields incorrect or missing";
+            }
+            else {
+                titleMessage = "Registration successful";
+                mainMessage = "User is successfully registered.";
+            }
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
+            builder1.setTitle(titleMessage);
+            builder1.setMessage(mainMessage);
+            builder1.setCancelable(true);
+            builder1.setPositiveButton("Okay",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            startActivity(intent);
+                        }
+                    });
+
+            AlertDialog alert11 = builder1.create();
+            alert11.show();
         }
     }
 
@@ -126,6 +158,15 @@ public class SignUp extends ActionBarActivity {
             }
             // Response from server after login process will be stored in response variable.
             response = sb.toString();
+
+            try {
+                JSONObject jsonObj = new JSONObject(response);
+                String message = jsonObj.getString("success");
+                regFailed = Boolean.parseBoolean(message);
+            }
+            catch(Exception ex) {
+                ex.printStackTrace();
+            }
             Log.v("SignUpActivity", "response = " + response);
             // You can perform UI operations here
             //Toast.makeText(this, "Message from Server: \n" + response, 0).show();
