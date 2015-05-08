@@ -64,6 +64,11 @@ public class SessionManager {
         _context.startActivity(i);
     }
 
+    public void clearUserPrefs(){
+        editor.clear();
+        editor.commit();
+    }
+
     public void checkLogin(){
         if(!this.isLoggedIn()){
             Intent i = new Intent(_context, Login.class);

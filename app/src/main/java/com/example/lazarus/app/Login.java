@@ -48,6 +48,7 @@ public class Login extends ActionBarActivity{
 
         switch(v.getId()){
             case R.id.login_button:
+                session.clearUserPrefs();
                 try {
                     new PostDataTask().execute();
                 } catch (Exception e) {
