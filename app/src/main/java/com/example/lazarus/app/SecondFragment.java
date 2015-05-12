@@ -101,10 +101,10 @@ public class SecondFragment extends Fragment {
             }
         });
 
-        if (Integer.parseInt(session.getUserDetail().get("gid")) == 1){
+        if (Integer.parseInt(session.getUserDetail().get("gid")) == 0){
             add_bird_butt.setVisibility(View.GONE);
         }
-        
+
         return view;
     }
 
@@ -227,7 +227,7 @@ public class SecondFragment extends Fragment {
         public void onItemClick(AdapterView parent, View v, int position, long id)
         {
             HashMap<String, String> user_prefs = session.getUserDetail();
-            if(Integer.parseInt(user_prefs.get("gid")) != 1){
+            if(Integer.parseInt(user_prefs.get("gid")) != 0){
                 Log.v("SecondFragment", "masterbirdarray[position] = " + masterBirdArray.get(position));
                 Intent i = new Intent(getActivity(), EditDeleteBirds.class);
                 i.putExtra("BIRD_DATA", masterBirdArray.get(position) + "," + user_prefs.get("uid"));

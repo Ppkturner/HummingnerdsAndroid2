@@ -1,62 +1,71 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:id="@+id/scrollViewFirstFragment"
-    android:fillViewport="true">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@android:color/holo_red_light">
+
+    <Button
+        android:id="@+id/logout_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/logout"
+        android:layout_marginTop="12dp"
+        android:layout_centerHorizontal="true"/>
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:background="@android:color/holo_red_light"
-        android:weightSum="1">
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:weightSum="2">
 
-        <Button
-            android:id="@+id/logout_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/logout"
-            android:layout_marginTop="12dp"
-            android:layout_centerHorizontal="true"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="Feeders"
+                android:id="@+id/feederTextView" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:text="Feeders"
-            android:id="@+id/feederTextView" />
-
-         <ListView
-             android:layout_width="wrap_content"
-             android:layout_height="190dp"
-             android:id="@+id/feederList"
-             android:focusable="false"
-             android:dividerHeight="0.1dp"
-             android:focusableInTouchMode="false"
-             android:footerDividersEnabled="true"
-             android:background="#ffff9838"
-             android:layout_marginTop="10dp"
-             android:layout_below="@+id/logout_button"
-             android:layout_weight="0.48" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:text="Visits"
-            android:id="@+id/visitTextView" />
-
-        <ListView
-            android:layout_width="347dp"
-            android:layout_height="261dp"
-            android:layout_marginTop="10dp"
-            android:id="@+id/visitList"
-            android:layout_alignTop="@+id/feederList"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:background="#fffff454"
-            android:layout_weight="0.43" />
-
+            <ListView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/feederList"
+                android:focusable="false"
+                android:dividerHeight="0.1dp"
+                android:focusableInTouchMode="false"
+                android:footerDividersEnabled="true"
+                android:background="#ffff9838"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/logout_button"
+                android:layout_weight="0.48" />
         </LinearLayout>
-</ScrollView>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="Visits"
+                android:id="@+id/visitTextView" />
+
+            <ListView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:id="@+id/visitList"
+                android:layout_alignTop="@+id/feederList"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:background="#fffff454"
+                android:layout_weight="0.43" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

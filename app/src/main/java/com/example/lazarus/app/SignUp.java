@@ -162,7 +162,13 @@ public class SignUp extends ActionBarActivity {
             try {
                 JSONObject jsonObj = new JSONObject(response);
                 String message = jsonObj.getString("success");
-                regFailed = Boolean.parseBoolean(message);
+                Log.v("RegisterActivity", message);
+                if (Integer.parseInt(message) == 1){
+                    regFailed = true;
+                }
+                else if (Integer.parseInt(message) == 0){
+                    regFailed = false;
+                }
             }
             catch(Exception ex) {
                 ex.printStackTrace();

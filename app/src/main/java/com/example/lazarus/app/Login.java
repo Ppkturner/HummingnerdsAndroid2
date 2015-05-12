@@ -107,7 +107,6 @@ public class Login extends ActionBarActivity{
 
             AlertDialog alert11 = builder1.create();
             alert11.show();
-
         }
     }
 
