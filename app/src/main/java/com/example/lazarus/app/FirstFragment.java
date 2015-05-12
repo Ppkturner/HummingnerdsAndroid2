@@ -173,7 +173,7 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
                     String status = feeder.getString("status"); //feeder status
                     String feederSN = feeder.getString("FeederSN");
                     String country = feeder.getString("country");
-                    feederArray.add(loc + "," + zipcode);
+                    feederArray.add(loc + "(" + zipcode + ")");
                     masterDataFeeder.add(loc + "," + feederID + "," + zipcode + "," + feederManu + "," + feederVol + ","
                             + feederType + "," + feederSN + "," + country + "," + status);
                     Log.v("UserCPActivitySuccess", "location: " + loc + " ID: " + feederID + " zipcode: " + zipcode + " status: " + status);
@@ -189,7 +189,7 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
                     String zipcode = visit.getString("zipcode");
                     String birdID = visit.getString("BID");
                     String visitDate = visit.getString("VisitDate"); //Will need to reformate this
-                    visitArray.add(birdID + " , " + loc);
+                    visitArray.add(loc + "(" + birdID + ")");
                     masterDataVisit.add(loc + "," + feederID + "," + zipcode + "," + birdID + "," + visitDate);
                     Log.v("UserCPActivitySuccess", "location: " + loc + " FID: " + feederID + " zipcode: " + zipcode + " BID: " + birdID + " visitDate: " + visitDate);
                 }

@@ -41,6 +41,7 @@ public class EditDeleteBirds extends ActionBarActivity  implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_delete_birds);
+        setTitle("Modify Birds");
 
         edit_button = (Button) findViewById(R.id.edit_button);
         delete_button = (Button) findViewById(R.id.delete_button);

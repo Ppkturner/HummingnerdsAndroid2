@@ -169,7 +169,7 @@ public class ThirdFragment extends Fragment {
 
                     String indexCountry = "" + Arrays.asList(this.getResources().getStringArray(R.array.countries_array)).indexOf(country);
 
-                    feederArray.add(loc + "," + zipcode);
+                    feederArray.add(loc + "(" + zipcode + ")");
                     masterDataFeeder.add(loc + "," + feederID + "," + zipcode + "," + feederManu + "," + feederVol + ","
                             + feederType + "," + feederSN + "," + indexCountry);
                     Log.v("ThirdFragment", "location: " + loc + " ID: " + feederID + " zipcode: " + zipcode);

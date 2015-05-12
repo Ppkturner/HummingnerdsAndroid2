@@ -14,13 +14,11 @@
         android:inputType="textEmailAddress"
         android:ems="10"
         android:id="@+id/usernameField"
+        android:hint="@string/email"
+        android:layout_marginTop="10dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="18dp"
-        android:hint="@string/email"/>
+        android:layout_alignRight="@+id/link_to_register"
+        android:layout_alignEnd="@+id/link_to_register" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -32,7 +30,9 @@
         android:layout_alignStart="@+id/usernameField"
         android:layout_alignLeft="@+id/usernameField"
         android:layout_marginTop="14dp"
-        android:hint="@string/password"/>
+        android:layout_centerHorizontal="true"
+        android:hint="@string/password"
+        android:layout_gravity="center" />
 
     <Button
         android:id="@+id/login_button"
@@ -42,7 +42,8 @@
         android:layout_marginTop="12dp"
         android:layout_below="@+id/passwordField"
         android:layout_centerHorizontal="true"
-        android:onClick="clickFunction"/>
+        android:onClick="clickFunction"
+        android:layout_gravity="center" />
 
     <TextView
         android:id="@+id/link_to_register"
@@ -55,6 +56,7 @@
         android:layout_centerHorizontal="true"
         android:textColor="#2700ff"
         android:onClick="clickFunction"
-        android:clickable="true"/>
+        android:clickable="true"
+        android:layout_gravity="center" />
 
 </RelativeLayout>

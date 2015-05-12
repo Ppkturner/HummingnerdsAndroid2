@@ -40,6 +40,7 @@ public class EditDeleteFeeder extends ActionBarActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_delete_feeder);
+        setTitle("Modify Feeder");
         edit_button = (Button) findViewById(R.id.edit_button);
         delete_button = (Button) findViewById(R.id.delete_button);
         cancel_button = (Button) findViewById(R.id.cancel_button);

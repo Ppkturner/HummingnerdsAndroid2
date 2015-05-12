@@ -40,6 +40,7 @@ public class NewBird extends ActionBarActivity  implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_bird);
+        setTitle("Modify bird");
 
         add_button = (Button) findViewById(R.id.add_button);
         cancel_button = (Button) findViewById(R.id.cancel_button);

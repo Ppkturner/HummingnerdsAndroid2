@@ -167,7 +167,7 @@ public class SecondFragment extends Fragment {
                     String tagType = bird.getString("TagType");
                     String rfidTag = bird.getString("rfidTagId");
                     masterBirdArray.add(birdID +"," + gender + "," + age + "," + feederID + "," + name + "," + taggedDate + "," + bandNumb + "," + tagType + "," + rfidTag);
-                    birdsArray.add("BID: " + birdID +"| Gender: " + gender + "| Age: " + age + "| FeederID: " + feederID + "| Name:" + name + "| Tagged Date: " + taggedDate + "| Band Number: " + bandNumb + "| Tag Type: " + tagType);
+                    birdsArray.add("BID: " + birdID +"| Gender: " + gender + "| Age: " + age);
                     Log.v("BirdActivity", birdID +" " + gender + " " + age + " " + feederID + " " + name + " " + taggedDate + " " + bandNumb + " " + tagType);
 
                 }
