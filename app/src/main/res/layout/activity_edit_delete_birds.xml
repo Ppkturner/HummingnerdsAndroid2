@@ -1,98 +1,103 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.example.lazarus.app.EditDeleteBirds">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.example.lazarus.app.EditDeleteBirds">
 
-    <TextView
-        android:id="@+id/species_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Species Name"/>
-    <Spinner
-        android:id="@+id/species_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"/>
-
-    <TextView
-        android:id="@+id/bird_age_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bird Age"/>
-    <Spinner
-        android:id="@+id/bird_age_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bird Gender"/>
-
-    <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/bird_radio_group">
-
-        <RadioButton
+        <TextView
+            android:id="@+id/species_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Male"
-            android:id="@+id/radioMale"
-            android:checked="false" />
-
-        <RadioButton
+            android:text="Species Name"/>
+        <Spinner
+            android:id="@+id/species_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Female"
-            android:id="@+id/radioFemale"
-            android:checked="false" />
-    </RadioGroup>
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="RFID Tag #"/>
-    <EditText
-        android:id="@+id/rfid_tag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="256"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="NBBL Band #"/>
-    <EditText
-        android:id="@+id/nbbl_band"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="256"/>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/edit_button"
+        <TextView
+            android:id="@+id/bird_age_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/edit_feeder"/>
-        <Button
-            android:id="@+id/delete_button"
+            android:text="Bird Age"/>
+        <Spinner
+            android:id="@+id/bird_age_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/delete_feeder"/>
-        <Button
-            android:id="@+id/cancel_button"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"/>
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/cancel"/>
+            android:text="Bird Gender"/>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/bird_radio_group">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male"
+                android:id="@+id/radioMale"
+                android:checked="false" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female"
+                android:id="@+id/radioFemale"
+                android:checked="false" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RFID Tag #"/>
+        <EditText
+            android:id="@+id/rfid_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="256"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NBBL Band #"/>
+        <EditText
+            android:id="@+id/nbbl_band"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="256"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/edit_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/edit_feeder"/>
+            <Button
+                android:id="@+id/delete_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/delete_feeder"/>
+            <Button
+                android:id="@+id/cancel_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel"/>
+        </LinearLayout>
+
     </LinearLayout>
-
-</LinearLayout>
+</ScrollView>

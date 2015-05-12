@@ -79,6 +79,7 @@ public class SecondFragment extends Fragment {
 
         Log.v("BirdActivityOnCreate", BirdData);
 
+
         //textView.setText(BirdData);
 
         //Initialized the array list
@@ -87,6 +88,7 @@ public class SecondFragment extends Fragment {
         // Find the listview from the xml
         birdListView = (ListView) view.findViewById(R.id.birdList);
         birdListView.setOnItemClickListener(birdClickHandler);
+
 
         add_bird_butt = (Button) view.findViewById(R.id.add_bird_button);
         add_bird_butt.setOnClickListener(new Button.OnClickListener() {
@@ -98,6 +100,11 @@ public class SecondFragment extends Fragment {
                 startActivity(i);
             }
         });
+
+        if (Integer.parseInt(session.getUserDetail().get("gid")) == 1){
+            add_bird_butt.setVisibility(View.GONE);
+        }
+        
         return view;
     }
 
@@ -220,12 +227,14 @@ public class SecondFragment extends Fragment {
         public void onItemClick(AdapterView parent, View v, int position, long id)
         {
             HashMap<String, String> user_prefs = session.getUserDetail();
-            Log.v("SecondFragment", "masterbirdarray[position] = " + masterBirdArray.get(position));
-            Intent i = new Intent(getActivity(), EditDeleteBirds.class);
-            i.putExtra("BIRD_DATA", masterBirdArray.get(position) + "," + user_prefs.get("uid"));
-            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(i);
-            getActivity().finish();
+            if(Integer.parseInt(user_prefs.get("gid")) != 1){
+                Log.v("SecondFragment", "masterbirdarray[position] = " + masterBirdArray.get(position));
+                Intent i = new Intent(getActivity(), EditDeleteBirds.class);
+                i.putExtra("BIRD_DATA", masterBirdArray.get(position) + "," + user_prefs.get("uid"));
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+                getActivity().finish();
+            }
         }
     };
 
