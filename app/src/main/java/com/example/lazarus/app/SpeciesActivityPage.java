@@ -15,7 +15,7 @@ public class SpeciesActivityPage extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_species_activity_page);
-
+        setTitle("Information about this Species");
         // Stuff to do with webview goes here possibly
         speciesWebView = (WebView) findViewById(R.id.webView);
         String body = "<h1>Species: Temp Species</h1> <p> Lorem ipsum dolor sit amet, at pri mollis percipit mediocritatem, duo alienum nostrum definitionem te, facete aliquam ex nam. Ius vero pertinacia omittantur at, ad molestie scribentur duo. Accusam scaevola \n" +
