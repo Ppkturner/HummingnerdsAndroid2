@@ -13,12 +13,12 @@
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
+        android:layout_marginTop="20dp"
         android:id="@+id/usernameField"
         android:hint="@string/email"
-        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
         android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/link_to_register"
-        android:layout_alignEnd="@+id/link_to_register" />
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -31,8 +31,7 @@
         android:layout_alignLeft="@+id/usernameField"
         android:layout_marginTop="14dp"
         android:layout_centerHorizontal="true"
-        android:hint="@string/password"
-        android:layout_gravity="center" />
+        android:hint="@string/password" />
 
     <Button
         android:id="@+id/login_button"

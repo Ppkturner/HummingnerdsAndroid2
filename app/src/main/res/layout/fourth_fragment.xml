@@ -11,14 +11,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=  "@string/edit_password"/>
+            android:paddingTop="20dp"
+            android:text=  "@string/edit_password"
+            android:layout_gravity="center_horizontal" />
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/passwordField"
-            android:hint="@string/password"/>
+            android:hint="@string/password"
+            android:layout_gravity="center_horizontal" />
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,12 +29,14 @@
             android:ems="10"
             android:id="@+id/confirmPasswordField"
             android:layout_below="@+id/passwordField"
-            android:hint="@string/confirm_password"/>
+            android:hint="@string/confirm_password"
+            android:layout_gravity="center_horizontal" />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text = "@string/confirm"
-            android:id= "@+id/change_password"/>
+            android:id= "@+id/change_password"
+            android:layout_gravity="center_horizontal" />
 
     </LinearLayout>
 </ScrollView>
