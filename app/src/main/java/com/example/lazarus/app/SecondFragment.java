@@ -71,12 +71,6 @@ public class SecondFragment extends Fragment {
         View view = inflater.inflate(R.layout.second_fragment, container, false);
         TextView textView = (TextView) view.findViewById(R.id.listTextView);
 
-        try {
-            new PostDataTask().execute();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         Log.v("BirdActivityOnCreate", BirdData);
 
 

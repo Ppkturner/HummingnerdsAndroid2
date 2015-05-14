@@ -122,7 +122,7 @@ public class AddFeeder extends ActionBarActivity implements View.OnClickListener
 
         URL url = null;
         String response = null;
-        String parameters = "FeederSN="+feeder_serial.getText().toString()
+        String parameters = "feederSN="+feeder_serial.getText().toString()
                 +"&location="+edit_location.getText().toString()
                 +"&freq="+feeder_freq.getText().toString()
                 +"&country="+(country_list.getSelectedItemPosition() + 1)

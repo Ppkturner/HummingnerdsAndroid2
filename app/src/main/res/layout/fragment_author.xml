@@ -5,7 +5,7 @@
     <!-- TODO: Update blank fragment layout -->
     <TextView android:layout_width="match_parent" android:layout_height="match_parent"
         android:textAllCaps="false"
-        android:text="This app was developed by the Hummingnerds:\nDustin Ellis\nScott Turner\nHuu Tan Nyugen\nArjun Bharadwaj"
+        android:text="This app was developed by the Hummingnerds:\nDustin Ellis\nScott Turner\nHuu Tan Nguyen\nArjun Bharadwaj"
         android:textSize="20dp"
         android:typeface="normal" />
 
