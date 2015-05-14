@@ -154,7 +154,7 @@ public class EditDeleteBirds extends ActionBarActivity  implements View.OnClickL
             case R.id.delete_button:
                 try {
                     // WARNING:- DESTRUCTIVE ACTION. COMMENTED OUT FOR THE MOMENT
-                    //new PostDeleteTask().execute();
+                    new PostDeleteTask().execute();
                     AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
                     builder1.setMessage("Delete Action was successful.");
                     builder1.setCancelable(true);
@@ -246,8 +246,8 @@ public class EditDeleteBirds extends ActionBarActivity  implements View.OnClickL
         try
         {
             //url = new URL("bla");
-            url = new URL("http://www.193.dwellis.com/android.php?bird=add&uid="+split_data[split_data.length - 1]);
-            //Log.v("EditDeleteFeeder", "http://www.193.dwellis.com/android.php?feeder=edit&fid="+split_data[1]);
+            url = new URL("http://www.193.dwellis.com/android.php?bird=edit"+"&bid="+split_data[0]+"&uid="+split_data[split_data.length - 1]);
+            Log.v("EditDeleteFeeder", "http://www.193.dwellis.com/android.php?bird=edit&bid="+split_data[0]);
             connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -294,10 +294,12 @@ public class EditDeleteBirds extends ActionBarActivity  implements View.OnClickL
         URL url = null;
         String response = null;
 
+        Log.v("Delete Bird", split_data[0]);
+
         try
         {
-            url = new URL("http://www.193.dwellis.com/android.php?bird=delete&fid="+split_data[1]+"&uid="+split_data[split_data.length - 1]);
-            Log.v("EditDeleteBird", "http://www.193.dwellis.com/android.php?feeder=edit&fid="+split_data[1]);
+            url = new URL("http://www.193.dwellis.com/android.php?bird=delete&bid="+split_data[0]+"&uid="+split_data[split_data.length - 1]);
+            Log.v("EditDeleteBird", "http://www.193.dwellis.com/android.php?feeder=edit&bid="+split_data[0]);
             connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");

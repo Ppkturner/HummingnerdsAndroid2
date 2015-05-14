@@ -152,7 +152,7 @@ public class Login extends ActionBarActivity{
             String token_gid = "";
             String token_uid = "";
             String temp = "";
-            //Log.v("LoginActivity", "value = " + (tokens[0] == response));
+//            Log.v("LoginActivity", "value = " + (tokens[0] == response));
             if (!(tokens[0] == response)){
                 String[] tokens1 = tokens[1].split("[:]");
                 String[] tokens2 = tokens[2].split("[:]");
