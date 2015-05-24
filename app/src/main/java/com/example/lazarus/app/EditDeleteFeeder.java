@@ -113,14 +113,33 @@ public class EditDeleteFeeder extends ActionBarActivity implements View.OnClickL
             case R.id.delete_button:
                 try {
                     // WARNING:- DESTRUCTIVE ACTION. COMMENTED OUT FOR THE MOMENT
-                    new PostDeleteTask().execute();
+                    AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
+                    builder2.setMessage("Delete Action was successful.");
+                    builder2.setCancelable(true);
+                    final AlertDialog alert2 = builder2.create();
+
+
                     AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-                    builder1.setMessage("Delete Action was successful.");
+                    builder1.setMessage("Are you sure you want to delete this item?");
                     builder1.setCancelable(true);
+                    builder1.setPositiveButton("Yes",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    new PostDeleteTask().execute();
+                                    alert2.show();
+                                    launchIntent();
+                                }
+                            });
+                    builder1.setNegativeButton("No",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
+
                     AlertDialog alert11 = builder1.create();
                     alert11.show();
-                    this.finish();
-                    startActivity(new Intent(this, UserMenu.class));
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -129,6 +148,11 @@ public class EditDeleteFeeder extends ActionBarActivity implements View.OnClickL
                 startActivity(new Intent(this, UserMenu.class));
                 break;
         }
+    }
+
+    private void launchIntent() {
+        this.finish();
+        startActivity(new Intent(this, UserMenu.class));
     }
 
     private class PostDeleteTask extends AsyncTask<String, Void, String> {

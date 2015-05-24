@@ -72,8 +72,8 @@ public class ThirdFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.third_fragment, container, false);
-        TextView textView = (TextView) view.findViewById(R.id.listTextView);
-        textView.setText("Fragment #" + mPage);
+        //TextView textView = (TextView) view.findViewById(R.id.listTextView);
+        //textView.setText("Fragment #" + mPage);
 
         add_button = (Button) view.findViewById(R.id.add_feeder_button);
 
