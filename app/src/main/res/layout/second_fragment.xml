@@ -2,7 +2,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/holo_orange_light" >
+        android:background="#E4FDFC" >
 
         <Button
             android:id="@+id/add_bird_button"
@@ -23,5 +23,6 @@
             android:layout_height="match_parent"
             android:id="@+id/birdList"
             android:fastScrollEnabled="false"
+            android:background="#E4FDFC"
             android:footerDividersEnabled="true" />
     </LinearLayout>

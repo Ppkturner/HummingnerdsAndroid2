@@ -1,11 +1,13 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingLeft="10dp"
+    android:background="#E4FDFC">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView android:layout_width="match_parent" android:layout_height="match_parent"
         android:textAllCaps="false"
-        android:text="This app was developed by the Hummingnerds:\nDustin Ellis\nScott Turner\nHuu Tan Nguyen\nArjun Bharadwaj"
+        android:text="This app was developed by the Hummingnerds:\n &#8226; Dustin Ellis\n &#8226; Scott Turner\n &#8226; Huu Tan Nguyen\n &#8226; Arjun Bharadwaj"
         android:textSize="20dp"
         android:typeface="normal" />
 

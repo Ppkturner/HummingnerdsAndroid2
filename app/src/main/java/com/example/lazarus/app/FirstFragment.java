@@ -1,6 +1,7 @@
 package com.example.lazarus.app;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -86,6 +87,7 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
         // Find the listview from the xml
         lv2 = (ListView) view.findViewById(R.id.visitList);
 
+        //lv1.setBackground(getResources().getDrawable(R.drawable.gradient));
         // Initialize the Feeder ArrayList
         feederArray = new ArrayList<String>();
         // Initialize the Visit Arraylist

@@ -3,7 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@android:color/holo_red_light">
+    android:background="#E4FDDC">
 
     <Button
         android:id="@+id/logout_button"
@@ -23,7 +23,8 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            >
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -39,7 +40,7 @@
                 android:dividerHeight="0.1dp"
                 android:focusableInTouchMode="false"
                 android:footerDividersEnabled="true"
-                android:background="#ffff9838"
+                android:background="#E4FDFC"
                 android:layout_marginTop="10dp"
                 android:layout_below="@+id/logout_button"
                 android:layout_weight="0.48" />
@@ -64,7 +65,7 @@
                 android:layout_alignTop="@+id/feederList"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:background="#fffff454"
+                android:background="#E6FAC8"
                 android:layout_weight="0.43" />
         </LinearLayout>
     </LinearLayout>
