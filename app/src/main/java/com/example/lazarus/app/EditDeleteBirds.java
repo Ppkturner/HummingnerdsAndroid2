@@ -272,8 +272,9 @@ public class EditDeleteBirds extends ActionBarActivity  implements View.OnClickL
         try
         {
             //url = new URL("bla");
-            url = new URL("http://www.193.dwellis.com/android.php?bird=edit"+"&bid="+split_data[0]+"&uid="+split_data[split_data.length - 1]);
-            Log.v("EditDeleteFeeder", "http://www.193.dwellis.com/android.php?bird=edit&bid="+split_data[0]);
+            url = new URL("http://rfid.hummingbirdhealth.org/android.php?bird=edit"+"&bid="+split_data[0]+"&uid="+split_data[split_data.length - 1]);
+
+            Log.v("EditDeleteFeeder", "http://rfid.hummingbirdhealth.org/android.php?bird=edit&bid="+split_data[0]);
             connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -324,7 +325,7 @@ public class EditDeleteBirds extends ActionBarActivity  implements View.OnClickL
 
         try
         {
-            url = new URL("http://www.193.dwellis.com/android.php?bird=delete&bid="+split_data[0]+"&uid="+split_data[split_data.length - 1]);
+            url = new URL("http://rfid.hummingbirdhealth.org/android.php?bird=delete&bid="+split_data[0]+"&uid="+split_data[split_data.length - 1]);
             Log.v("EditDeleteBird", "http://www.193.dwellis.com/android.php?feeder=edit&bid="+split_data[0]);
             connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);

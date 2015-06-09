@@ -217,8 +217,8 @@ public class EditDeleteFeeder extends ActionBarActivity implements View.OnClickL
         Log.v("EditDeleteFeeder", parameters);
         try
         {
-            url = new URL("http://www.193.dwellis.com/android.php?feeder=edit&fid="+split_data[1]+"&uid="+split_data[split_data.length - 1]);
-            Log.v("EditDeleteFeeder", "http://www.193.dwellis.com/android.php?feeder=edit&fid="+split_data[1]);
+            url = new URL("http://rfid.hummingbirdhealth.org/android.php?feeder=edit&fid="+split_data[1]+"&uid="+split_data[split_data.length - 1]);
+            Log.v("EditDeleteFeeder", "http://rfid.hummingbirdhealth.org/android.php?feeder=edit&fid="+split_data[1]);
             connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -267,8 +267,8 @@ public class EditDeleteFeeder extends ActionBarActivity implements View.OnClickL
 
         try
         {
-            url = new URL("http://www.193.dwellis.com/android.php?feeder=delete&fid="+split_data[1]+"&uid="+split_data[split_data.length - 1]);
-            Log.v("EditDeleteFeeder", "http://www.193.dwellis.com/android.php?feeder=edit&fid="+split_data[1]);
+            url = new URL("http://rfid.hummingbirdhealth.org/android.php?feeder=delete&fid="+split_data[1]+"&uid="+split_data[split_data.length - 1]);
+            Log.v("EditDeleteFeeder", "http://rfid.hummingbirdhealth.org/android.php?feeder=edit&fid="+split_data[1]);
             connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");

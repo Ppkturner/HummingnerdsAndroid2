@@ -125,7 +125,8 @@ public class ThirdFragment extends Fragment {
         String parameters = ""/*"uid=" + user_prefs.get("uid")*/;
         try
         {
-            url = new URL("http://www.193.dwellis.com/android.php?feeder=list&uid=" + user_prefs.get("uid"));
+            url = new URL("http://rfid.hummingbirdhealth.org/android.php?feeder=list&uid=" + user_prefs.get("uid"));
+            Log.v("FeederPage", "http://rfid.hummingbirdhealth.org/android.php?feeder=list&uid=" + user_prefs.get("uid"));
             connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");

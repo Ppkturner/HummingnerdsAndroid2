@@ -134,7 +134,7 @@ public class FirstFragment extends Fragment implements View.OnClickListener {
         String parameters = ""/*"uid=" + user_prefs.get("uid")*/;
         try
         {
-            url = new URL("http://www.193.dwellis.com/android.php?user=dashboard&uid=" + user_prefs.get("uid"));
+            url = new URL("http://rfid.hummingbirdhealth.org/android.php?user=dashboard&uid=" + user_prefs.get("uid"));
             connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");

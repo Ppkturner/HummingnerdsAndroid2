@@ -141,7 +141,7 @@ public class NewBird extends ActionBarActivity  implements View.OnClickListener 
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(String result) {
-            Log.v("AddFeeder", "On Post Edit Executed Successfully!!");
+            Log.v("AddBird", "On Post Edit Executed Successfully!!");
         }
     }
 
@@ -170,7 +170,8 @@ public class NewBird extends ActionBarActivity  implements View.OnClickListener 
 
         try
         {
-            url = new URL("http://www.193.dwellis.com/android.php?bird=add&uid="+bird_data);
+            url = new URL("http://rfid.hummingbirdhealth.org/android.php?bird=add&uid="+bird_data);
+            Log.v("Addingbird", "http://rfid.hummingbirdhealth.org/android.php?bird=add&uid="+bird_data);
             connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");

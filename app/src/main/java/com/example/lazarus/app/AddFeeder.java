@@ -137,7 +137,8 @@ public class AddFeeder extends ActionBarActivity implements View.OnClickListener
         String user_id = intent.getStringExtra("USER_PREFS_DATA");
         try
         {
-            url = new URL("http://www.193.dwellis.com/android.php?feeder=add&uid="+user_id);
+            url = new URL("http://rfid.hummingbirdhealth.org/android.php?feeder=add&uid="+user_id);
+            Log.v("AddFeeder" , "http://rfid.hummingbirdhealth.org/android.php?feeder=add&uid="+user_id);
             connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");

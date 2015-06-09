@@ -146,8 +146,8 @@ public class FourthFragment extends Fragment implements View.OnClickListener{
         Log.v("UserSettings", parameters);
         try
         {
-            url = new URL("http://www.193.dwellis.com/android.php?user=settings&uid=" + session.getUserDetail().get("uid"));
-            Log.v("UserSettings", "http://www.193.dwellis.com/android.php?user=settings&uid="+session.getUserDetail().get("uid"));
+            url = new URL("http://rfid.hummingbirdhealth.org/android.php?user=settings&uid=" + session.getUserDetail().get("uid"));
+            Log.v("UserSettings", "http://rfid.hummingbirdhealth.org/android.php?user=settings&uid="+session.getUserDetail().get("uid"));
             connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");

@@ -138,7 +138,7 @@ public class SignUp extends ActionBarActivity {
         Log.v("LoginActivity", parameters);
         try
         {
-            url = new URL("http://www.193.dwellis.com/android.php?user=register");
+            url = new URL("http://rfid.hummingbirdhealth.org/android.php?user=register");
             connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
